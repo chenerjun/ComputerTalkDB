@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="T530"
   DTS:CreatorName="T530\William"
-  DTS:DTSID="{D629D376-3D1E-438E-BF17-56637AC5DCBF}"
+  DTS:DTSID="{7D4053C6-46D9-4A7E-98DA-0E6D2D2C43BB}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.92"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="BCP_Import_Data"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{B08786CD-D949-4B38-BB2F-CE2BC8D66E96}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{B30E6005-B9D5-4FA4-95CE-D23CC7B378F2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>

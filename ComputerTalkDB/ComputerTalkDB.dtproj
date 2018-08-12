@@ -26,12 +26,12 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">T530</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYl3OIVCYaEqE5NUbA1LxywAAAAACAAAAAAAQZgAAAAEAACAAAABO8st0s7nUFtE6YjR7EDV0ASB2ojVDmVbbTWkyaC0gpwAAAAAOgAAAAAIAACAAAAAlYSm3dsFIEvvDOkziwJP4Gy7Z2TTcKflSqzgSfa+B9pAAAABhTfifjqxJPlf6zHfQbv90gueYJ8835/TJOynWUJeGSz6Z0asZ3yz0vrXKVIsFj044dDCFggY3T76TLhDxjgK5QVf4isFgUsKDMJynd2G/knG13HTJzkYXbmP2dms9l2VbZO/CmqEKs4toiy1ZycxeWGe9Csr0r0kHnwpqyKq9LHeL1EVlML9LGQBAET/51v9AAAAAjFlTyfKEp5B30m+Kvjjs8/KGa/Zq/JCo7zPq9Dz0hibK1Okpqna6WynCoe7qVwZs+4jtFeriHQj5TmwyGHcXSw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYl3OIVCYaEqE5NUbA1LxywAAAAACAAAAAAAQZgAAAAEAACAAAADve8bxjGOu7ftHtRv05G0Cmwy77Nvk2rSrlF9XXx+PVQAAAAAOgAAAAAIAACAAAABWqln/dODqILC59aY7CZdrmp6UuBjyMQN9EkBqNzhdj5AAAACZIFlR7vws5ezFHmQbwArgxoVNZrHtRTd56P4lo7xNSjEfPDJP5Fi2Bn5ubTxxq/kAdDoya5IXix3GnLCcm9k6ZxB2zYBxcGo/KQMgvdLVftvRfgTDh7H7a2WumuItmcyb8hjwDnYNDyC6sc2Ot+VQq9NhW8GRszPSfTy5OnkQI7uL9nlhRGh6avxmvOKfi3xAAAAAy29vGcrKaC5zOAjhmxB6HJXvcZTJs+dcVefgLgWydtHdaHaodcwAzwF0Z+HlOLR8PlKIJslFFjpuKEOcaZ5vuA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="unzip.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Package1.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="BCP_Import_Data.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
@@ -43,10 +43,10 @@
                 <SSIS:Property SSIS:Name="Name">unzip</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">35</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">36</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E1B97AC2-B0C7-4527-9EE8-896448A898C3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0434334F-0022-49E0-ABB0-1529973D7960}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -70,16 +70,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Package1.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="BCP_Import_Data.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{D629D376-3D1E-438E-BF17-56637AC5DCBF}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{7D4053C6-46D9-4A7E-98DA-0E6D2D2C43BB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">BCP_Import_Data</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F2312C34-9806-4C55-B227-741DEA63D596}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B30E6005-B9D5-4FA4-95CE-D23CC7B378F2}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
