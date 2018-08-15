@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="BCP_Import_Data"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{B30E6005-B9D5-4FA4-95CE-D23CC7B378F2}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{D2E32CC6-3CFD-4292-BEAF-994C46F2DC35}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -171,20 +171,20 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{69A64240-1A02-431E-A459-9379273F4DAF}"
-          DTS:ObjectName="{69A64240-1A02-431E-A459-9379273F4DAF}"
+          DTS:DTSID="{0C308FE2-763F-4F9F-BAA3-A91B88CC5DD0}"
+          DTS:ObjectName="{0C308FE2-763F-4F9F-BAA3-A91B88CC5DD0}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::tbl_name" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{9F1B6904-1474-4A69-866D-4600406DB37D}"
-          DTS:ObjectName="{9F1B6904-1474-4A69-866D-4600406DB37D}"
+          DTS:DTSID="{8B3763FB-7957-4EB5-ABF6-503357B7F0F9}"
+          DTS:ObjectName="{8B3763FB-7957-4EB5-ABF6-503357B7F0F9}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::file_path" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{F37CED4A-F319-44D3-B19D-AB1BB64BB010}"
-          DTS:ObjectName="{F37CED4A-F319-44D3-B19D-AB1BB64BB010}"
+          DTS:DTSID="{BE0047FA-CF3C-4177-BF57-069BC919E850}"
+          DTS:ObjectName="{BE0047FA-CF3C-4177-BF57-069BC919E850}"
           DTS:ValueIndex="2"
           DTS:VariableName="User::file_name" />
       </DTS:ForEachVariableMappings>
@@ -224,12 +224,12 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="205,124"
-          Size="205,167"
+          Size="214,167"
           Id="Package\Foreach Loop Container"
           TopLeft="144,142" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="246.5,99">
+          TopLeft="248.75,99">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
