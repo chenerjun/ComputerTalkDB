@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="unzip"
   DTS:PackageType="5"
-  DTS:VersionBuild="72"
-  DTS:VersionGUID="{05A7FCE0-2F2E-480F-A8F9-05E2BE484044}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{FD9764A2-AA88-4657-9CA3-ABF3CCA386D9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -254,13 +254,13 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Get_table_and_Source_file_name_path_from_Table_zTblPath"
+          DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task to read staging table name and source file name with path"
+          DTS:Description="Execute SQL Task to read staging table name and source file name with path, then BCP load source data to staging table one by one."
           DTS:DTSID="{51F83AA5-5D53-4320-9F3B-AA81AAFD4401}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="ExecuteSQL_Get_table_and_Source_file_name_path_from_Table_zTblPath"
+          DTS:ObjectName="ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
@@ -290,6 +290,30 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Insert_UpdateTables_one_by_one"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EC8EE491-91AE-4D03-ADD3-21BAF25AF86B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ExecuteSQL_Insert_UpdateTables_one_by_one"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
+              SQLTask:SqlStatementSource="DECLARE   @tblname varchar(500)=?&#xA;&#xA;DECLARE @targetTable VARCHAR(50)&#xA;&#xA;SET    @targetTable = SUBSTRING(@tblname, 3,LEN(@tblname)-2 )&#xA;&#xA;DECLARE    @SQLstring    NVARCHAR(MAX)&#xA;&#xA;SELECT        @SQLstring    =    sql_string         FROM       [zTblPath]        WHERE        Table_name = @tblname&#xA;&#xA;EXEC    SP_EXECUTESQL        @SQLstring" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@tblname"
+                SQLTask:DtsVariableName="User::tbl_name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="50" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Expression_count_Successfully_processing"
           DTS:CreationName="Microsoft.ExpressionTask"
           DTS:Description="Expression Task"
@@ -298,7 +322,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_count_Successfully_processing"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -314,7 +338,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_count_Unprocess_Files"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -330,7 +354,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_reset_ProcessedFile_to_false"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -346,7 +370,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="FileSystem_move_FileToProcessed"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <FileSystemData
@@ -747,7 +771,7 @@ namespace ST_24f57a85dd7a48a48c365025fea63135
     <msb:CodeName>ST_24f57a85dd7a48a48c365025fea63135</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>ST_24f57a85dd7a48a48c365025fea63135</msb:DisplayName>
-    <msb:ProjectId>{9D7D262E-ADF6-411A-AF8E-EE3C19C04779}</msb:ProjectId>
+    <msb:ProjectId>{BD85EF55-1F07-4752-9B9E-9AF4BE8DEE2C}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="ST_24f57a85dd7a48a48c365025fea63135.csproj" />
@@ -869,7 +893,7 @@ namespace ST_24f57a85dd7a48a48c365025fea63135.Properties {
               <BinaryItem
                 Name="ST_24f57a85dd7a48a48c365025fea63135.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAJeHdFsAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAA8i4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIYTfFsAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAA8i4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKAuAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -900,7 +924,7 @@ BTgAeQBkBBAA6QBrBT8AeQAZA0MA2QDmAkcAyQCQBQEAcQBkBAYAkQBkBAYA+QCTAEwA+QCfBVQA
 mQBkBFoAuQBkBAYACAAUAHQACAAYAHkAKQBzAOEALgALALkALgATAMIALgAbAOEALgAjAOoALgAr
 ABMBLgAzABMBLgA7ABMBLgBDAOoALgBLABkBLgBTABMBLgBbADABQwBjAHkASQBzAOEAYQB7AHkA
 YwBrAHkAGwADAAEABAADAAAAVASqAAAA8gCvAAAAiAW0AAIABAADAAIABQAFAAEABgAFAAIABwAH
-AASAAAABAAAAkRorcQAAAAAAAAEAAAAEAAAAAAAAAAAAAABiAF8AAAAAAA4AAAAAAAAAAAAAAGsA
+AASAAAABAAAAlxqjQgAAAAAAAAEAAAAEAAAAAAAAAAAAAABiAF8AAAAAAA4AAAAAAAAAAAAAAGsA
 JAMAAAAABAAAAAAAAAAAAAAAYgDFAwAAAAAOAAAAAAAAAAAAAABrADgAAAAAAAAAAAABAAAAtQQA
 AAUAAgAAAAAAAFNUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1ADxNb2R1bGU+AFN5
 c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2NvcmxpYgBk
@@ -931,7 +955,7 @@ RGVmYXVsdABzZXRfVGFza1Jlc3VsdABnZXRfQXNzZW1ibHkAAB9VAHMAZQByADoAOgBmAGkAbABl
 AF8AcABhAHQAaAAAA1wAAB9VAHMAZQByADoAOgBmAGkAbABlAF8AbgBhAG0AZQAAI1UAcwBlAHIA
 OgA6AFAAcgBvAGMAZQBzAHMARgBpAGwAZQAAcVMAVABfADIANABmADUANwBhADgANQBkAGQANwBh
 ADQAOABhADQAOABjADMANgA1ADAAMgA1AGYAZQBhADYAMwAxADMANQAuAFAAcgBvAHAAZQByAHQA
-aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAMd1MRIhgldBmEc1kKRPdOsABCABAQgDIAABBSAB
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAF7anb0GnWdHtyTTJIUV93gABCABAQgDIAABBSAB
 ARERBCABAQ4FIAEBEVUEBwESPQQgABJlBCAAEmkFIAESbRwDIAAcAyAADgYAAw4ODg4DIAACAyAA
 CgQgAQEcBwABEn0RgIEFIAASgIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDMkQQAAAAABAEAAAAD
 BhJNAwYSUQMGEhACBggDBhEUBAAAEk0EAAASUQUAAQESUQQAABIQAwAAAQQIABJNBAgAElEECAAS
@@ -950,14 +974,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQArcZEaAAABACtxkRo/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQCjQpcaAAABAKNClxo/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAA
 MAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABh
 AG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4A
 AAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1
 AGYAZQBhADYAMwAxADMANQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAA
-LgA2ADgAMAAxAC4AMgA4ADkANwAxAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
+LgA2ADgAMAA3AC4AMQA3ADAANQA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
 AFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1AGYA
 ZQBhADYAMwAxADMANQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0
 AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQA
@@ -966,8 +990,8 @@ AGEAbQBlAAAAUwBUAF8AMgA0AGYANQA3AGEAOAA1AGQAZAA3AGEANAA4AGEANAA4AGMAMwA2ADUA
 MAAyADUAZgBlAGEANgAzADEAMwA1AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBt
 AGUAAAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAA
 MgA1AGYAZQBhADYAMwAxADMANQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAA
-ADEALgAwAC4ANgA4ADAAMQAuADIAOAA5ADcAMQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
-VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADAAMQAuADIAOAA5ADcAMQAAAAAAAAAAAAAAAAAA
+ADEALgAwAC4ANgA4ADAANwAuADEANwAwADUAOQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
+VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADAANwAuADEANwAwADUAOQAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1019,7 +1043,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
           DTS:DTSID="{1895593F-726D-48F9-94D2-69F40F464FFB}"
-          DTS:From="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Get_table_and_Source_file_name_path_from_Table_zTblPath"
+          DTS:From="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
           DTS:To="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\DataFlow_update_Tables_by_using_staging" />
@@ -1041,6 +1065,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 5"
           DTS:To="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Expression_count_Unprocess_Files" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{7540E02D-84A9-4A1A-8881-8A64F3369F00}"
+          DTS:From="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Insert_UpdateTables_one_by_one"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Script_Check_File_exist_And_NotEmpty" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{D71CD446-0301-41EB-9031-AA50E98061B0}"
+          DTS:From="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Insert_UpdateTables_one_by_one" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -1101,22 +1141,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="254,42"
           Id="Package\ExecuteProcess_Unzip_Source_Data"
-          TopLeft="286,85" />
+          TopLeft="420,85" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\ExecuteSQL_Log_ETL"
+          TopLeft="436,865" />
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteSQL_Read_TableInfo_from_zTblPath"
-          TopLeft="261,164" />
+          TopLeft="395,164" />
         <NodeLayout
           Size="285,42"
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\DataFlow_update_Tables_by_using_staging"
           TopLeft="45,114" />
         <NodeLayout
-          Size="431,42"
-          Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Get_table_and_Source_file_name_path_from_Table_zTblPath"
+          Size="518,42"
+          Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
           TopLeft="48,24" />
         <NodeLayout
           Size="279,42"
@@ -1143,15 +1187,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="187.5,156">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,34"
+              StartConnector="{x:Null}"
+              EndConnector="-42.8333333333333,34"
               Start="0,0"
-              End="0,26.5">
+              End="-42.8333333333333,26.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.5" />
+                    End="0,16.2775693923481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.2775693923481"
+                    Point2="0,20.2775693923481"
+                    Point3="-4,20.2775693923481" />
+                  <mssgle:LineSegment
+                    End="-38.8333333333333,20.2775693923481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.8333333333333,20.2775693923481"
+                    Point2="-42.8333333333333,20.2775693923481"
+                    Point3="-42.8333333333333,24.2775693923481" />
+                  <mssgle:LineSegment
+                    End="-42.8333333333333,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1165,7 +1221,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="185.75,232">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,31"
               Start="0,0"
               End="0,23.5">
@@ -1189,7 +1245,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="185.25,305">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,38"
               Start="0,0"
               End="0,30.5">
@@ -1208,13 +1264,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 3]"
-          TopLeft="263.5,66">
+          TopLeft="307,66">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-76,48"
+              StartConnector="{x:Null}"
+              EndConnector="-119.5,48"
               Start="0,0"
-              End="-76,40.5">
+              End="-119.5,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1225,13 +1281,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point2="0,24"
                     Point3="-4,24" />
                   <mssgle:LineSegment
-                    End="-72,24" />
+                    End="-115.5,24" />
                   <mssgle:CubicBezierSegment
-                    Point1="-72,24"
-                    Point2="-76,24"
-                    Point3="-76,28" />
+                    Point1="-115.5,24"
+                    Point2="-119.5,24"
+                    Point3="-119.5,28" />
                   <mssgle:LineSegment
-                    End="-76,40.5" />
+                    End="-119.5,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1245,7 +1301,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="188.25,385">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,26"
               Start="0,0"
               End="0,18.5">
@@ -1267,7 +1323,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="320,211.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="67,0"
               Start="0,0"
               End="59.5,0">
@@ -1286,19 +1342,139 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="Execute SQL Task to read staging table name and source file name with path, then BCP load source data to staging table one by one."
+          ParentId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One"
+          Size="343,64"
+          Id="845a7903-05d4-43d2-9ac9-8d9c77b12f5b"
+          TopLeft="569,8.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <NodeLayout
+          Size="302,42"
+          Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Insert_UpdateTables_one_by_one"
+          TopLeft="367,114" />
+        <EdgeLayout
+          Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 6]"
+          TopLeft="518,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-287.666666666667,34"
+              Start="0,0"
+              End="-287.666666666667,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.2775693923481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.2775693923481"
+                    Point2="0,20.2775693923481"
+                    Point3="-4,20.2775693923481" />
+                  <mssgle:LineSegment
+                    End="-283.666666666667,20.2775693923481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-283.666666666667,20.2775693923481"
+                    Point2="-287.666666666667,20.2775693923481"
+                    Point3="-287.666666666667,24.2775693923481" />
+                  <mssgle:LineSegment
+                    End="-287.666666666667,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One.PrecedenceConstraints[Constraint 7]"
+          TopLeft="392,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="126,48"
+              Start="0,0"
+              End="126,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.2886836027714" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.2886836027714"
+                    Point2="0,19.2886836027714"
+                    Point3="4,19.2886836027714" />
+                  <mssgle:LineSegment
+                    End="122,19.2886836027714" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122,19.2886836027714"
+                    Point2="126,19.2886836027714"
+                    Point3="126,23.2886836027714" />
+                  <mssgle:LineSegment
+                    End="126,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="643,516"
-          Size="643,559"
+          PanelSize="1089,516"
+          Size="1089,559"
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One"
           TopLeft="77.5,255" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="409.25,127">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="622,814">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
+              EndConnector="-95.5,51"
+              Start="0,0"
+              End="-95.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-91.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.5,25.5"
+                    Point2="-95.5,25.5"
+                    Point3="-95.5,29.5" />
+                  <mssgle:LineSegment
+                    End="-95.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="543.25,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
               EndConnector="0,37"
               Start="0,0"
               End="0,29.5">
@@ -1317,44 +1493,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="402.25,206">
+          TopLeft="539.5,206">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49"
+              StartConnector="{x:Null}"
+              EndConnector="82.5,49"
               Start="0,0"
-              End="0,41.5">
+              End="82.5,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="181,42"
-          Id="Package\ExecuteSQL_Log_ETL"
-          TopLeft="302,865" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="395.75,814">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,51"
-              Start="0,0"
-              End="0,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
                   <mssgle:LineSegment
-                    End="0,43.5" />
+                    End="78.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.5,24.5"
+                    Point2="82.5,24.5"
+                    Point3="82.5,28.5" />
+                  <mssgle:LineSegment
+                    End="82.5,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
