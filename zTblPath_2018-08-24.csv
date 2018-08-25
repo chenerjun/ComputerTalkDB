@@ -1006,24 +1006,469 @@ src.SwitchID
    )
 --WHEN NOT MATCHED BY SOURCE THEN DELETE
 ;
-z_DnisGroup	c:\\ComputerTALKDB\\RAW	DnisGroup.dat	
-z_Email	c:\\ComputerTALKDB\\RAW	Email.dat	
-z_EmailGroup	c:\\ComputerTALKDB\\RAW	EmailGroup.dat	
-z_Eval_Contact	c:\\ComputerTALKDB\\RAW	Eval_Contact.dat	
-z_EvalCategory	c:\\ComputerTALKDB\\RAW	EvalCategory.dat	
-z_EvalCriteria	c:\\ComputerTALKDB\\RAW	EvalCriteria.dat	
-z_EvalCriteriaValue	c:\\ComputerTALKDB\\RAW	EvalCriteriaValue.dat	
-z_EvalEvaluation	c:\\ComputerTALKDB\\RAW	EvalEvaluation.dat	
-z_EvalForm	c:\\ComputerTALKDB\\RAW	EvalForm.dat	
-z_EvalLangString	c:\\ComputerTALKDB\\RAW	EvalLangString.dat	
+z_DnisGroup	c:\\ComputerTALKDB\\RAW	DnisGroup.dat	MERGE [dbo].[DnisGroup] AS tar
+USING [dbo].[z_DnisGroup] AS src
+ON tar.SwitchID = src.SwitchID  AND tar.DnisGroupID = src.DnisGroupID
+WHEN MATCHED THEN
+   UPDATE SET
+tar.SwitchID  =  src.SwitchID
+, tar.DnisGroupID  =  src.DnisGroupID
+, tar.DnisGroupName  =  src.DnisGroupName
+, tar.MinChannels  =  src.MinChannels
+, tar.MaxChannels  =  src.MaxChannels
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+SwitchID
+, DnisGroupID
+, DnisGroupName
+, MinChannels
+, MaxChannels
+   )
+   VALUES
+   (
+src.SwitchID
+, src.DnisGroupID
+, src.DnisGroupName
+, src.MinChannels
+, src.MaxChannels
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_Email	c:\\ComputerTALKDB\\RAW	Email.dat	MERGE [dbo].[Email] AS tar
+USING [dbo].[z_Email] AS src
+ON tar.SwitchID = src.SwitchID  AND tar.EmailAddress = src.EmailAddress
+WHEN MATCHED THEN
+   UPDATE SET
+tar.SwitchID  =  src.SwitchID
+, tar.EmailAddress  =  src.EmailAddress
+, tar.EmailGroupID  =  src.EmailGroupID
+, tar.LanguageCode  =  src.LanguageCode
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+SwitchID
+, EmailAddress
+, EmailGroupID
+, LanguageCode
+   )
+   VALUES
+   (
+src.SwitchID
+, src.EmailAddress
+, src.EmailGroupID
+, src.LanguageCode
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EmailGroup	c:\\ComputerTALKDB\\RAW	EmailGroup.dat	MERGE [dbo].[EmailGroup] AS tar
+USING [dbo].[z_EmailGroup] AS src
+ON tar.SwitchID = src.SwitchID  AND tar.EmailGroupID = src.EmailGroupID
+WHEN MATCHED THEN
+   UPDATE SET
+tar.SwitchID  =  src.SwitchID
+, tar.EmailGroupID  =  src.EmailGroupID
+, tar.EmailGroupName  =  src.EmailGroupName
+, tar.UnroutedEmailAddress  =  src.UnroutedEmailAddress
+, tar.NumThreads  =  src.NumThreads
+, tar.StartingWfID  =  src.StartingWfID
+, tar.StartingPageID  =  src.StartingPageID
+, tar.StartingActionID  =  src.StartingActionID
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+SwitchID
+, EmailGroupID
+, EmailGroupName
+, UnroutedEmailAddress
+, NumThreads
+, StartingWfID
+, StartingPageID
+, StartingActionID
+   )
+   VALUES
+   (
+src.SwitchID
+, src.EmailGroupID
+, src.EmailGroupName
+, src.UnroutedEmailAddress
+, src.NumThreads
+, src.StartingWfID
+, src.StartingPageID
+, src.StartingActionID
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_Eval_Contact	c:\\ComputerTALKDB\\RAW	Eval_Contact.dat	MERGE [dbo].[Eval_Contact] AS tar
+USING [dbo].[z_Eval_Contact] AS src
+ON tar.ContactId = src.ContactId  AND tar.EvalId = src.EvalId
+WHEN MATCHED THEN
+   UPDATE SET
+tar.ContactId  =  src.ContactId
+, tar.EvalId  =  src.EvalId
+, tar.EvaluatorId  =  src.EvaluatorId
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+ContactId
+, EvalId
+, EvaluatorId
+   )
+   VALUES
+   (
+src.ContactId
+, src.EvalId
+, src.EvaluatorId
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalCategory	c:\\ComputerTALKDB\\RAW	EvalCategory.dat	MERGE [dbo].[EvalCategory] AS tar
+USING [dbo].[z_EvalCategory] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.FormId  =  src.FormId
+, tar.NameStringId  =  src.NameStringId
+, tar.[Order]  =  src.[Order]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+FormId
+, NameStringId
+, [Order]
+   )
+   VALUES
+   (
+src.FormId
+, src.NameStringId
+, src.[Order]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalCriteria	c:\\ComputerTALKDB\\RAW	EvalCriteria.dat	MERGE [dbo].[EvalCriteria] AS tar
+USING [dbo].[z_EvalCriteria] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.CategoryId  =  src.CategoryId
+, tar.NameStringId  =  src.NameStringId
+, tar.isOptional  =  src.isOptional
+, tar.MinScore  =  src.MinScore
+, tar.MaxScore  =  src.MaxScore
+, tar.NumScoreIncrements  =  src.NumScoreIncrements
+, tar.[Type]  =  src.[Type]
+, tar.[Order]  =  src.[Order]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+CategoryId
+, NameStringId
+, isOptional
+, MinScore
+, MaxScore
+, NumScoreIncrements
+, [Type]
+, [Order]
+   )
+   VALUES
+   (
+src.CategoryId
+, src.NameStringId
+, src.isOptional
+, src.MinScore
+, src.MaxScore
+, src.NumScoreIncrements
+, src.[Type]
+, src.[Order]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalCriteriaValue	c:\\ComputerTALKDB\\RAW	EvalCriteriaValue.dat	MERGE [dbo].[EvalCriteriaValue] AS tar
+USING [dbo].[z_EvalCriteriaValue] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.CriteriaId  =  src.CriteriaId
+, tar.[Value]  =  src.[Value]
+, tar.NameStringId  =  src.NameStringId
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+CriteriaId
+, [Value]
+, NameStringId
+
+   )
+   VALUES
+   (
+src.CriteriaId
+, src.[Value]
+, src.NameStringId
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalEvaluation	c:\\ComputerTALKDB\\RAW	EvalEvaluation.dat	MERGE [dbo].[EvalEvaluation] AS tar
+USING [dbo].[z_EvalEvaluation] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.FormId  =  src.FormId
+, tar.EvaluationsStartDateTime  =  src.EvaluationsStartDateTime
+, tar.EvaluationsEndDateTime  =  src.EvaluationsEndDateTime
+, tar.[Status]  =  src.[Status]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+FormId
+, EvaluationsStartDateTime
+, EvaluationsEndDateTime
+, [Status]
+
+   )
+   VALUES
+   (
+src.FormId
+, src.EvaluationsStartDateTime
+, src.EvaluationsEndDateTime
+, src.[Status]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalForm	c:\\ComputerTALKDB\\RAW	EvalForm.dat	MERGE [dbo].[EvalForm] AS tar
+USING [dbo].[z_EvalForm] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.NameStringId  =  src.NameStringId
+, tar.CreationTime  =  src.CreationTime
+, tar.DeactivationTime  =  src.DeactivationTime
+, tar.AncestorFormId  =  src.AncestorFormId
+, tar.LastUpdatedTime  =  src.LastUpdatedTime
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+NameStringId
+, CreationTime
+, DeactivationTime
+, AncestorFormId
+, LastUpdatedTime
+   )
+   VALUES
+   (
+src.NameStringId
+, src.CreationTime
+, src.DeactivationTime
+, src.AncestorFormId
+, src.LastUpdatedTime
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_EvalLangString	c:\\ComputerTALKDB\\RAW	EvalLangString.dat	MERGE [dbo].[EvalLangString] AS tar
+USING [dbo].[z_EvalLangString] AS src
+ON tar.Id = src.Id  AND tar.lang = src.lang
+WHEN MATCHED THEN
+   UPDATE SET
+tar.Id  =  src.Id
+, tar.lang  =  src.lang
+, tar.[value]  =  src.[value]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+Id
+, [lang]
+, [value]
+   )
+   VALUES
+   (
+src.Id
+, src.[lang]
+, src.[value]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
 z_EvalLangStringIds	c:\\ComputerTALKDB\\RAW	EvalLangStringIds.dat	
-z_EvalScore	c:\\ComputerTALKDB\\RAW	EvalScore.dat	
-z_Fields	c:\\ComputerTALKDB\\RAW	Fields.dat	
-z_Holiday	c:\\ComputerTALKDB\\RAW	Holiday.dat	
-z_HolidayLocationMap	c:\\ComputerTALKDB\\RAW	HolidayLocationMap.dat	
-z_Holidays	c:\\ComputerTALKDB\\RAW	Holidays.dat	
-z_iceWebSettings_AlertHistory	c:\\ComputerTALKDB\\RAW	iceWebSettings_AlertHistory.dat	
-z_iceWebSettings_Alerts	c:\\ComputerTALKDB\\RAW	iceWebSettings_Alerts.dat	
+z_EvalScore	c:\\ComputerTALKDB\\RAW	EvalScore.dat	MERGE [dbo].[EvalScore] AS tar
+USING [dbo].[z_EvalScore] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.EvalId  =  src.EvalId
+, tar.CategoryId  =  src.CategoryId
+, tar.CriteriaId  =  src.CriteriaId
+, tar.Score  =  src.Score
+, tar.MaxScore  =  src.MaxScore
+, tar.Comment  =  src.Comment
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+EvalId
+, CategoryId
+, CriteriaId
+, Score
+, MaxScore
+, Comment
+   )
+   VALUES
+   (
+src.EvalId
+, src.CategoryId
+, src.CriteriaId
+, src.Score
+, src.MaxScore
+, src.Comment
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_Fields	c:\\ComputerTALKDB\\RAW	Fields.dat	MERGE [dbo].[Fields] AS tar
+USING [dbo].[z_Fields] AS src
+ON tar.Id = src.Id  
+WHEN MATCHED THEN
+   UPDATE SET
+tar.ID  =  src.ID
+, tar.[Name]  =  src.[Name]
+
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+ID
+, [Name]
+
+   )
+   VALUES
+   (
+src.ID
+,src.[Name]
+
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_Holiday	c:\\ComputerTALKDB\\RAW	Holiday.dat	MERGE [dbo].[Holiday] AS tar
+USING [dbo].[z_Holiday] AS src
+ON tar.SwitchID = src.SwitchID  AND  tar.[Month] = src.[Month]  AND  tar.[Day] = src.[Day]
+WHEN MATCHED THEN
+   UPDATE SET
+tar.SwitchID  =  src.SwitchID
+, tar.[Month]  =  src.[Month]
+, tar.[Day]  =  src.[Day]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+SwitchID
+, [Month]
+, [Day]
+   )
+   VALUES
+   (
+src.SwitchID
+, src.[Month]
+, src.[Day]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_HolidayLocationMap	c:\\ComputerTALKDB\\RAW	HolidayLocationMap.dat	MERGE [dbo].[HolidayLocationMap] AS tar
+USING [dbo].[z_HolidayLocationMap] AS src
+ON tar.ID = src.ID   
+WHEN MATCHED THEN
+   UPDATE SET
+tar.HolidayID  =  src.HolidayID
+, tar.LocationID  =  src.LocationID
+, tar.Observed  =  src.Observed
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+HolidayID
+, LocationID
+, Observed
+   )
+   VALUES
+   (
+src.HolidayID
+, src.LocationID
+, src.Observed
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_Holidays	c:\\ComputerTALKDB\\RAW	Holidays.dat	MERGE [dbo].[Holidays] AS tar
+USING [dbo].[z_Holidays] AS src
+ON tar.ID = src.ID   
+WHEN MATCHED THEN
+   UPDATE SET
+tar.[Name]  =  src.[Name]
+, tar.[Date]  =  src.[Date]
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+[Name]
+, [Date]
+   )
+   VALUES
+   (
+src.[Name]
+, src.[Date]
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_iceWebSettings_AlertHistory	c:\\ComputerTALKDB\\RAW	iceWebSettings_AlertHistory.dat	MERGE [dbo].[iceWebSettings_AlertHistory] AS tar
+USING [dbo].[z_iceWebSettings_AlertHistory] AS src
+ON tar.ID = src.ID   
+WHEN MATCHED THEN
+   UPDATE SET
+tar.switchID  =  src.switchID
+, tar.agentID  =  src.agentID
+, tar.message  =  src.message
+, tar.targetID  =  src.targetID
+, tar.alertTime  =  src.alertTime
+, tar.alertID  =  src.alertID
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+switchID
+, agentID
+, message
+, targetID
+, alertTime
+, alertID
+   )
+   VALUES
+   (
+src.switchID
+, src.agentID
+, src.message
+, src.targetID
+, src.alertTime
+, src.alertID
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
+z_iceWebSettings_Alerts	c:\\ComputerTALKDB\\RAW	iceWebSettings_Alerts.dat	MERGE [dbo].[iceWebSettings_Alerts] AS tar
+USING [dbo].[z_iceWebSettings_Alerts] AS src
+ON tar.alertID = src.alertID   
+WHEN MATCHED THEN
+   UPDATE SET
+tar.switchID  =  src.switchID
+, tar.agentID  =  src.agentID
+, tar.lastFireTime  =  src.lastFireTime
+, tar.minimumAlertTimeInSeconds  =  src.minimumAlertTimeInSeconds
+, tar.alertXML  =  src.alertXML
+WHEN NOT MATCHED THEN
+   INSERT
+   (
+switchID
+, agentID
+, lastFireTime
+, minimumAlertTimeInSeconds
+, alertXML
+   )
+   VALUES
+   (
+src.switchID
+, src.agentID
+, src.lastFireTime
+, src.minimumAlertTimeInSeconds
+, src.alertXML
+   )
+--WHEN NOT MATCHED BY SOURCE THEN DELETE
+;
 z_iceWebSettings_HiddenItems	c:\\ComputerTALKDB\\RAW	iceWebSettings_HiddenItems.dat	MERGE [dbo].[iceWebSettings_HiddenItems] AS tar
 USING [dbo].[z_iceWebSettings_HiddenItems] AS src
 ON tar.recordID = src.recordID 
