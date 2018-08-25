@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="unzip"
   DTS:PackageType="5"
-  DTS:VersionBuild="94"
-  DTS:VersionGUID="{05674995-EDFA-4290-8313-95B0D15715EF}">
+  DTS:VersionBuild="95"
+  DTS:VersionGUID="{285C0536-E86C-4BB1-B916-A6E0E68C74DF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -202,7 +202,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL _log_3"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -250,7 +250,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Create_Staging_Tables"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -267,7 +267,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Disable_All_Constrains"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -284,7 +284,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Disable_Trigers"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -318,7 +318,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Enable_Trigers"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -335,7 +335,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Enable_Trigers_2"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -400,7 +400,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_log_2"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -448,7 +448,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Log_ETL"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -518,27 +518,11 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Expressiiom_set_VarConstraints_False"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
           Expression="@[User::varConstrains] = false" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Expression_set_varTriger_False"
-      DTS:CreationName="Microsoft.ExpressionTask"
-      DTS:Description="Expression Task"
-      DTS:DTSID="{2726D21B-0766-4910-B02C-6CE7C32BAEA1}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Expression_set_varTriger_False"
-      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExpressionTask
-          Expression="@[User::varTrigers] = false" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -549,6 +533,22 @@
       DTS:ExecutableType="Microsoft.ExpressionTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Expression_Set_varTriger_False"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::varTrigers] = false" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression_set_varTriger_False"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{2726D21B-0766-4910-B02C-6CE7C32BAEA1}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression_set_varTriger_False"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="1">
       <DTS:Variables />
@@ -771,15 +771,6 @@
               ReadOnlyVariables="User::file_name,User::file_path"
               ReadWriteVariables="User::ProcessFile">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -985,6 +976,35 @@
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_24f57a85dd7a48a48c365025fea63135.Properties.Settings.get_Default():ST_24f57a85dd7a48a48c365025fea63135.Properties.Sett" +
+    "ings")]
+
+namespace ST_24f57a85dd7a48a48c365025fea63135.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -1086,7 +1106,8 @@ namespace ST_24f57a85dd7a48a48c365025fea63135
 
             System.IO.FileInfo thisFile = new FileInfo(processfile);
 
-            if ((thisFile.Exists) && (thisFile.Length > 0))
+            if (thisFile.Exists) 
+                //&& (thisFile.Length > 0))
             {
                 Dts.Variables["User::ProcessFile"].Value = true;
             }
@@ -1123,7 +1144,7 @@ namespace ST_24f57a85dd7a48a48c365025fea63135
     <msb:CodeName>ST_24f57a85dd7a48a48c365025fea63135</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>ST_24f57a85dd7a48a48c365025fea63135</msb:DisplayName>
-    <msb:ProjectId>{BD85EF55-1F07-4752-9B9E-9AF4BE8DEE2C}</msb:ProjectId>
+    <msb:ProjectId>{AF0CC2A7-72D0-48F9-98D2-3E349EA9B511}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="ST_24f57a85dd7a48a48c365025fea63135.csproj" />
@@ -1135,35 +1156,6 @@ namespace ST_24f57a85dd7a48a48c365025fea63135
     <msb:File Include="ScriptMain.cs" />
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_24f57a85dd7a48a48c365025fea63135.Properties.Settings.get_Default():ST_24f57a85dd7a48a48c365025fea63135.Properties.Sett" +
-    "ings")]
-
-namespace ST_24f57a85dd7a48a48c365025fea63135.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
               <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
@@ -1194,6 +1186,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1265,95 +1266,95 @@ namespace ST_24f57a85dd7a48a48c365025fea63135.Properties {
               <BinaryItem
                 Name="ST_24f57a85dd7a48a48c365025fea63135.dll">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
-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
+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
-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
+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
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA+A4AAAAgAAAAEAAAAAIA
+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
-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
-BTgAeQBkBBAA6QBrBT8AeQAZA0MA2QDmAkcAyQCQBQEAcQBkBAYAkQBkBAYA+QCTAEwA+QCfBVQA
-mQBkBFoAuQBkBAYACAAUAHQACAAYAHkAKQBzAOEALgALALkALgATAMIALgAbAOEALgAjAOoALgAr
-ABMBLgAzABMBLgA7ABMBLgBDAOoALgBLABkBLgBTABMBLgBbADABQwBjAHkASQBzAOEAYQB7AHkA
-YwBrAHkAGwADAAEABAADAAAAVASqAAAA8gCvAAAAiAW0AAIABAADAAIABQAFAAEABgAFAAIABwAH
-AASAAAABAAAAlxqjQgAAAAAAAAEAAAAEAAAAAAAAAAAAAABiAF8AAAAAAA4AAAAAAAAAAAAAAGsA
-JAMAAAAABAAAAAAAAAAAAAAAYgDFAwAAAAAOAAAAAAAAAAAAAABrADgAAAAAAAAAAAABAAAAtQQA
-AAUAAgAAAAAAAFNUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1ADxNb2R1bGU+AFN5
-c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2NvcmxpYgBk
-ZWZhdWx0SW5zdGFuY2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5k
-bGUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBUeXBlAEZhaWx1cmUAZ2V0X0N1bHR1
-cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFz
-ZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdl
-bmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVB
-dHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUA
-QXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2Vt
-Ymx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENv
-bXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFz
-c2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0
-ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUA
-Z2V0X1ZhbHVlAHNldF9WYWx1ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRvU3Ry
-aW5nAGdldF9MZW5ndGgATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5T
-cWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVtLkNv
-bXBvbmVudE1vZGVsAFNUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1LmRsbABnZXRf
-SXRlbQBTeXN0ZW0ARW51bQByZXNvdXJjZU1hbgBCb29sZWFuAFNjcmlwdE1haW4AU3lzdGVtLkNv
-bmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24ARmlsZUlu
-Zm8AQ3VsdHVyZUluZm8ARmlsZVN5c3RlbUluZm8AZ2V0X1Jlc291cmNlTWFuYWdlcgAuY3RvcgAu
-Y2N0b3IAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMA
-U3lzdGVtLlJlc291cmNlcwBTVF8yNGY1N2E4NWRkN2E0OGE0OGMzNjUwMjVmZWE2MzEzNS5Qcm9w
-ZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU1RfMjRmNTdhODVkZDdh
-NDhhNDhjMzY1MDI1ZmVhNjMxMzUuUHJvcGVydGllcwBnZXRfVmFyaWFibGVzAFNldHRpbmdzAFN1
-Y2Nlc3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAGdldF9FeGlzdHMAQ29uY2F0AE9iamVjdABnZXRf
-RGVmYXVsdABzZXRfVGFza1Jlc3VsdABnZXRfQXNzZW1ibHkAAB9VAHMAZQByADoAOgBmAGkAbABl
-AF8AcABhAHQAaAAAA1wAAB9VAHMAZQByADoAOgBmAGkAbABlAF8AbgBhAG0AZQAAI1UAcwBlAHIA
-OgA6AFAAcgBvAGMAZQBzAHMARgBpAGwAZQAAcVMAVABfADIANABmADUANwBhADgANQBkAGQANwBh
-ADQAOABhADQAOABjADMANgA1ADAAMgA1AGYAZQBhADYAMwAxADMANQAuAFAAcgBvAHAAZQByAHQA
-aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAF7anb0GnWdHtyTTJIUV93gABCABAQgDIAABBSAB
-ARERBCABAQ4FIAEBEVUEBwESPQQgABJlBCAAEmkFIAESbRwDIAAcAyAADgYAAw4ODg4DIAACAyAA
-CgQgAQEcBwABEn0RgIEFIAASgIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDMkQQAAAAABAEAAAAD
-BhJNAwYSUQMGEhACBggDBhEUBAAAEk0EAAASUQUAAQESUQQAABIQAwAAAQQIABJNBAgAElEECAAS
-EAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAAoAQAjU1Rf
-MjRmNTdhODVkZDdhNDhhNDhjMzY1MDI1ZmVhNjMxMzUAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAg
-MjAxOAAASQEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC41AQBUDhRGcmFtZXdvcmtEaXNwbGF5
-TmFtZRIuTkVUIEZyYW1ld29yayA0LjUAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNl
-cy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0
-cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVu
-dGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAADILgAAAAAAAAAAAADiLgAAACAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAA1C4AAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRs
-bAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACs
+LgAAAAAAAEgAAAACAAUAaCEAAFgMAAABAAAAAAAAAMAtAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwBACjAAAAAAAAAAIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAKbxQAAApyIQAAcAIoEAAACm8RAAAKciUAAHBvEgAACm8TAAAKbxQAAAooFQAACnMWAAAKbxcA
+AAosIgIoEAAACm8RAAAKckUAAHBvEgAACheMHgAAAW8YAAAKKyACKBAAAApvEQAACnJFAABwbxIA
+AAoWjB4AAAFvGAAACgIoEAAAChZvGQAACioeAigaAAAKKh4CKBsAAAoqrn4BAAAELR5yaQAAcNAD
+AAACKBwAAApvHQAACnMeAAAKgAEAAAR+AQAABCoafgIAAAQqHgKAAgAABCoafgMAAAQqHgIoHwAA
+CioucwgAAAaAAwAABCoAAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADoAwAA
+I34AAFQEAACkBQAAI1N0cmluZ3MAAAAA+AkAANwAAAAjVVMA1AoAABAAAAAjR1VJRAAAAOQKAAB0
+AQAAI0Jsb2IAAAAAAAAAAgAAAVcdoAEJAwAAAPoBMwAWAAABAAAAIQAAAAUAAAAGAAAACQAAAAEA
+AAAfAAAAAgAAABAAAAACAAAAAwAAAAQAAAABAAAABAAAAAEAAAABAAAAAACJAwEAAAAAAAYALwJ5
+BAYAvgJ5BAYAewFmBA8A7QQAAAYAqAEPBAYAEgIPBAYA8wEPBAYApQIPBAYATwIPBAYAaAIPBAYA
+vwEPBAYA2gH2AgoAgwI4AwoA+gA4AwYAwQO6AwYAXgFmBAYAcgW6AwYASQSZBAYAKgT6Aw4ALgFz
+Aw4AjwFzAw4AFgHlAwYAQwF5BAoAYQM4AxIALwWlABIAeAClAAYAEgO6AwYAIQQuAAYANgQuAAYA
+0gO6AwYAxQC6AwYAgQC6AwYAmAUPBAAAAAAlAAAAAAABAAEAAQAQANoDAQA5AAEAAQAAABAAoAT8
+BEUAAQADAAABEAA5BfwEWQADAAcAAwEAAFIFAAA9AAQACgARAMYDdQARAOoAeQARAGgAfQAGBlcA
+gQBWgEIFhABWgMoAhABQIAAAAACGAOADBgABAP8gAAAAAIYYWQQGAAEAByEAAAAAgxhZBAYAAQAP
+IQAAAACTCEUEiAABADshAAAAAJMI0gCNAAEAQiEAAAAAkwjeAJIAAQBKIQAAAACWCHkFmAACAFEh
+AAAAAIYYWQQGAAIAWSEAAAAAkRhfBJ0AAgAAAAEA8AIJAFkEAQARAFkEBgAZAFkECgApAFkEEAAx
+AFkEEAA5AFkEEABBAFkEEABJAFkEEABRAFkEEABZAFkEEABhAFkEEABpAFkEBgCBAFkEBgCpAFkE
+FQC5AFkEBgBxAEoFGwDBACsFIADJALEDJQDRANwCKwCJABADLwDZAGsFMwDhAFkEEADpAGAFOgDR
+AOYCPgDBAIUFAQBxAFkEBgCJAFkEBgD5AJMAQwD5AJQFSwCRAFkEUQCxAFkEBgAIABQAawAIABgA
+cAApAHMA2AAuAAsAsAAuABMAuQAuABsA2AAuACMA4QAuACsACgEuADMACgEuADsACgEuAEMA4QAu
+AEsAEAEuAFMACgEuAFsAJwFDAGMAcABJAHMA2ABhAHsAcABjAGsAcAADAAEABAADAAAASQShAAAA
+8gCmAAAAfQWrAAIABAADAAIABQAFAAEABgAFAAIABwAHAASAAAABAAAAmhoMmQAAAAAAAAEAAAAE
+AAAAAAAAAAAAAABZAF8AAAAAAA4AAAAAAAAAAAAAAGIAGQMAAAAABAAAAAAAAAAAAAAAWQC6AwAA
+AAAOAAAAAAAAAAAAAABiADgAAAAAAAAAAAABAAAAqgQAAAUAAgAAAAAAAFNUXzI0ZjU3YTg1ZGQ3
+YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1ADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAVmFyaWFibGUA
+UnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUATWljcm9zb2Z0LlNxbFNlcnZlci5E
+dHMuUnVudGltZQBUeXBlAEZhaWx1cmUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VD
+dWx0dXJlAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFz
+ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dl
+ck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxl
+QXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1
+dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0
+ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRy
+aWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRl
+AFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1
+dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAZ2V0X1ZhbHVlAHNldF9WYWx1ZQB2YWx1
+ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRvU3RyaW5nAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+U2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFNjcmlw
+dE9iamVjdE1vZGVsAFN5c3RlbS5Db21wb25lbnRNb2RlbABTVF8yNGY1N2E4NWRkN2E0OGE0OGMz
+NjUwMjVmZWE2MzEzNS5kbGwAZ2V0X0l0ZW0AU3lzdGVtAEVudW0AcmVzb3VyY2VNYW4AQm9vbGVh
+bgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5
+c3RlbS5SZWZsZWN0aW9uAEZpbGVJbmZvAEN1bHR1cmVJbmZvAEZpbGVTeXN0ZW1JbmZvAGdldF9S
+ZXNvdXJjZU1hbmFnZXIALmN0b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVu
+dGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfMjRmNTdhODVkZDdhNDhh
+NDhjMzY1MDI1ZmVhNjMxMzUuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2lu
+Z01vZGVzAFNUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1LlByb3BlcnRpZXMAZ2V0
+X1ZhcmlhYmxlcwBTZXR0aW5ncwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBnZXRfRXhp
+c3RzAENvbmNhdABPYmplY3QAZ2V0X0RlZmF1bHQAc2V0X1Rhc2tSZXN1bHQAZ2V0X0Fzc2VtYmx5
+AAAAAAAfVQBzAGUAcgA6ADoAZgBpAGwAZQBfAHAAYQB0AGgAAANcAAAfVQBzAGUAcgA6ADoAZgBp
+AGwAZQBfAG4AYQBtAGUAACNVAHMAZQByADoAOgBQAHIAbwBjAGUAcwBzAEYAaQBsAGUAAHFTAFQA
+XwAyADQAZgA1ADcAYQA4ADUAZABkADcAYQA0ADgAYQA0ADgAYwAzADYANQAwADIANQBmAGUAYQA2
+ADMAMQAzADUALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAABOVfpt
+7SiQRoKzJujdL9leAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFRBCAAEmEEIAASZQUgARJpHAMg
+ABwDIAAOBgADDg4ODgMgAAIEIAEBHAcAARJ9EYCBBSAAEoCFByACAQ4SgIUIt3pcVhk04IkIiYRd
+zYCAzJEEAAAAAAQBAAAAAwYSSQMGEk0DBhIQAgYIAwYRFAQAABJJBAAAEk0FAAEBEk0EAAASEAMA
+AAEECAASSQQIABJNBAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MB
+CAEAAgAAAAAAKAEAI1NUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1AAAFAQAAAAAW
+AQARQ29weXJpZ2h0IEAgIDIwMTgAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNQEAVA4U
+RnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41AAAAtAAAAM7K774BAAAAkQAA
+AGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAu
+MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lz
+dGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAKAu
+AAAAAAAAAAAAALouAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsLgAAAAAAAAAAAAAAAF9Db3JE
+bGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQCjQpcaAAABAKNClxo/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQAMmZoaAAABAAyZmho/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAA
 MAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABh
 AG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4A
 AAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1
 AGYAZQBhADYAMwAxADMANQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAA
-LgA2ADgAMAA3AC4AMQA3ADAANQA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
+LgA2ADgAMQAwAC4AMwA5ADEAOAAwAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
 AFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1AGYA
 ZQBhADYAMwAxADMANQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0
 AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQA
@@ -1362,15 +1363,15 @@ AGEAbQBlAAAAUwBUAF8AMgA0AGYANQA3AGEAOAA1AGQAZAA3AGEANAA4AGEANAA4AGMAMwA2ADUA
 MAAyADUAZgBlAGEANgAzADEAMwA1AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBt
 AGUAAAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAA
 MgA1AGYAZQBhADYAMwAxADMANQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAA
-ADEALgAwAC4ANgA4ADAANwAuADEANwAwADUAOQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
-VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADAANwAuADEANwAwADUAOQAAAAAAAAAAAAAAAAAA
+ADEALgAwAC4ANgA4ADEAMAAuADMAOQAxADgAMAAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
+VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADEAMAAuADMAOQAxADgAMAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAAD0PgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAADMPgAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1612,11 +1613,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="254,42"
           Id="Package\ExecuteProcess_Unzip_Source_Data"
           TopLeft="423,164" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\ExecuteSQL _log_3"
+          TopLeft="971,1184" />
         <NodeLayout
           Size="249,42"
           Id="Package\ExecuteSQL_Create_Staging_Tables"
@@ -1626,9 +1631,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\ExecuteSQL_Disable_All_Constrains"
           TopLeft="119,86" />
         <NodeLayout
+          Size="213,42"
+          Id="Package\ExecuteSQL_Disable_Trigers"
+          TopLeft="748,76" />
+        <NodeLayout
           Size="245,42"
           Id="Package\ExecuteSQL_Enable_all_constraints"
           TopLeft="409,936" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\ExecuteSQL_Enable_Trigers"
+          TopLeft="326,1018" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\ExecuteSQL_Enable_Trigers_2"
+          TopLeft="627,1094" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\ExecuteSQL_log_1"
+          TopLeft="62,1187" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\ExecuteSQL_log_2"
+          TopLeft="658,1191" />
         <NodeLayout
           Size="181,42"
           Id="Package\ExecuteSQL_Log_ETL"
@@ -1637,6 +1662,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Size="289,42"
           Id="Package\ExecuteSQL_Read_TableInfo_from_zTblPath"
           TopLeft="405,238" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Expressiiom_set_VarConstraints_False"
+          TopLeft="611,1021" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Expression_set_varTriger_False"
+          TopLeft="36,1019" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Expression_Set_varTriger_False"
+          TopLeft="936,1095" />
         <NodeLayout
           Size="518,42"
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
@@ -1678,7 +1715,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="271.5,411">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,24"
               Start="0,0"
               End="0,16.5">
@@ -1700,7 +1737,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="277.75,202">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,26"
               Start="0,0"
               End="0,18.5">
@@ -1724,7 +1761,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="274,270">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-8.5,26"
               Start="0,0"
               End="-8.5,18.5">
@@ -1758,7 +1795,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="617.75,209">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,25"
               Start="0,0"
               End="0,17.5">
@@ -1780,7 +1817,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="269.25,338">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,31"
               Start="0,0"
               End="0,23.5">
@@ -1802,7 +1839,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="414,184.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="83,0"
               Start="0,0"
               End="75.5,0">
@@ -1826,7 +1863,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="284.5,135">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,25"
               Start="0,0"
               End="0,17.5">
@@ -1848,7 +1885,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="307,66">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-19.5,27"
               Start="0,0"
               End="-19.5,19.5">
@@ -1913,11 +1950,45 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One"
           TopLeft="77.5,331" />
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="492,978">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-61,40"
+              Start="0,0"
+              End="-61,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.1557177615572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.1557177615572"
+                    Point2="0,16.1557177615572"
+                    Point3="-4,16.1557177615572" />
+                  <mssgle:LineSegment
+                    End="-57,16.1557177615572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-57,16.1557177615572"
+                    Point2="-61,16.1557177615572"
+                    Point3="-61,20.1557177615572" />
+                  <mssgle:LineSegment
+                    End="-61,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="549.75,206">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,32"
               Start="0,0"
               End="0,24.5">
@@ -1935,11 +2006,125 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="739.5,1136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="849,1115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,0"
+              Start="0,0"
+              End="79.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="24.50865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="326,1039.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63,0"
+              Start="0,0"
+              End="-55.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-55.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.99134765625,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="147.25,1061">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,126"
+              Start="0,0"
+              End="0,118.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,118.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="1053.25,1137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="549.5,280">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="34,51"
               Start="0,0"
               End="34,43.5">
@@ -1973,7 +2158,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="552.75,126">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,38"
               Start="0,0"
               End="0,30.5">
@@ -1990,30 +2175,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="Disable all constraints for database"
-          ParentId="Package"
-          Size="199,37"
-          Id="bc84b42f-9996-4fd9-ac72-57329fa18aa1"
-          TopLeft="148,46">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo>
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
-        <NodeLayout
-          Size="213,42"
-          Id="Package\ExecuteSQL_Disable_Trigers"
-          TopLeft="748,76" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="854.5,118">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-243,46"
               Start="0,0"
               End="-243,38.5">
@@ -2043,83 +2210,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="242.5,128">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="246,36"
-              Start="0,0"
-              End="246,28.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.7506493506494" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.7506493506494"
-                    Point2="0,23.7506493506494"
-                    Point3="4,23.7506493506494" />
-                  <mssgle:LineSegment
-                    End="242,23.7506493506494" />
-                  <mssgle:CubicBezierSegment
-                    Point1="242,23.7506493506494"
-                    Point2="246,23.7506493506494"
-                    Point3="246,27.7506493506494" />
-                  <mssgle:LineSegment
-                    End="246,28.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="210,42"
-          Id="Package\ExecuteSQL_Enable_Trigers"
-          TopLeft="326,1018" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="492,978">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="-61,40"
-              Start="0,0"
-              End="-61,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.1557177615572" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.1557177615572"
-                    Point2="0,16.1557177615572"
-                    Point3="-4,16.1557177615572" />
-                  <mssgle:LineSegment
-                    End="-57,16.1557177615572" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-57,16.1557177615572"
-                    Point2="-61,16.1557177615572"
-                    Point3="-61,20.1557177615572" />
-                  <mssgle:LineSegment
-                    End="-61,32.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="431,1060">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-14.5,123"
               Start="0,0"
               End="-14.5,115.5">
@@ -2149,11 +2244,45 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="242.5,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,36"
+              Start="0,0"
+              End="246,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.7506493506494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.7506493506494"
+                    Point2="0,23.7506493506494"
+                    Point3="4,23.7506493506494" />
+                  <mssgle:LineSegment
+                    End="242,23.7506493506494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,23.7506493506494"
+                    Point2="246,23.7506493506494"
+                    Point3="246,27.7506493506494" />
+                  <mssgle:LineSegment
+                    End="246,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
           TopLeft="583.5,903">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-52,33"
               Start="0,0"
               End="-52,25.5">
@@ -2182,20 +2311,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\ExecuteSQL_log_2"
-          TopLeft="658,1191" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Expressiiom_set_VarConstraints_False"
-          TopLeft="611,1021" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
           TopLeft="571,978">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="169.5,43"
               Start="0,0"
               End="169.5,35.5">
@@ -2226,16 +2347,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="222,42"
-          Id="Package\ExecuteSQL_Enable_Trigers_2"
-          TopLeft="627,1094" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
           TopLeft="739.25,1063">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,31"
               Start="0,0"
               End="0,23.5">
@@ -2252,136 +2369,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="739.5,1136">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,55"
-              Start="0,0"
-              End="0,47.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="229,42"
-          Id="Package\Expression_Set_varTriger_False"
-          TopLeft="936,1095" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="849,1115.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="87,0"
-              Start="0,0"
-              End="79.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="79.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="24.50865234375,5,30.4826953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="227,42"
-          Id="Package\Expression_set_varTriger_False"
-          TopLeft="36,1019" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="326,1039.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="-63,0"
-              Start="0,0"
-              End="-55.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-55.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-42.99134765625,5,30.4826953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\ExecuteSQL_log_1"
-          TopLeft="62,1187" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="147.25,1061">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,126"
-              Start="0,0"
-              End="0,118.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,118.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="170,42"
-          Id="Package\ExecuteSQL _log_3"
-          TopLeft="971,1184" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="1053.25,1137">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <AnnotationLayout
+          Text="Disable all constraints for database"
+          ParentId="Package"
+          Size="199,37"
+          Id="bc84b42f-9996-4fd9-ac72-57329fa18aa1"
+          TopLeft="148,46">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
