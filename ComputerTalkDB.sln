@@ -5,6 +5,19 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ComputerTalkDB", "ComputerTalkDB\ComputerTalkDB.dtproj", "{F862A799-6E7B-4A31-8AF8-32E31D641222}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{940641B6-09D0-4B4E-A040-55DF29D2C4EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\bcp.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\bcp.sql
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\copy table_stru.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\copy table_stru.sql
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\ExecuteSQLSource.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\ExecuteSQLSource.sql
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\NEW Copy table stur.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\NEW Copy table stur.sql
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\Table and columns info.xlsx = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\Table and columns info.xlsx
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\tableName.txt = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\tableName.txt
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\truncate tables.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\truncate tables.sql
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\zTblPath.csv = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\zTblPath.csv
+		..\..\..\..\..\Desktop\ComputerTALKDB SQL\zTblPath.sql = ..\..\..\..\..\Desktop\ComputerTALKDB SQL\zTblPath.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
