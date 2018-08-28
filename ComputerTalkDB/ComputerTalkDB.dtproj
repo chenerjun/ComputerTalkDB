@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">T530</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYl3OIVCYaEqE5NUbA1LxywAAAAACAAAAAAAQZgAAAAEAACAAAACEIwsTxdBGokhUZFFmsn+0nRpoRhIal596BNmADrfSvAAAAAAOgAAAAAIAACAAAAAq+gRajVQl/U5KuIvo5bIowwD/vxMFbCUpiZ6/lwRRNJAAAADAJk+uWbZrz2dGfV1w1OqCt7gMBB2viPT+pCGz5RO/YC5tM8atOIhFTU5a0bvL4MyUDBRrVEvLqWzjKN+knJngqjs6YHYibn0fxX4sjj+1UzTdbl8vnmYEe/S2Dan/1qjgzN7PnCtlzNDdzE8cLdypcBp1Nt7NnDm1urp8qmkZWb3Tcr3AhYwhw+J3ziwMSE5AAAAA++l7wpedgH99lH/5yETvmfPyBfMnSCIKaNrEqgjVRlVhLRCgACO858jN/a9c3qkeDyzTpEOFLVUWXqbART3gkA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYl3OIVCYaEqE5NUbA1LxywAAAAACAAAAAAAQZgAAAAEAACAAAADnj3UqzfyFgB83pBg3iXU/u9/nYg3+zmJJki7jCEQGoAAAAAAOgAAAAAIAACAAAACbzbvW0DuQx9SEjm+fR6KtnZIcKytFYd4ZzioCg85EwZAAAADyHvTu5Gxr6Zh+gzd/Rc13NN7B5yqZy6u2FABX+628nuTwEmK4HCh58OJIPHAbwIm50X5igevYnh+qoLq7qK52aurwbHmPZY5fGLUKt41nu/RNtk71C++r2xgIXitoVlp81R408B47EHN/mDLE9srtBPzysNMCjMNLF0eSxTHpdcdKS5h1HYP1EkiYLofcPaxAAAAAZZu7bCa9KE/GRYl7XtqGUxHwwCUVGCNy2cqqMMIMe06XSVr3dS4jJ6e7IxBZCrB4SL63xG/murGr9y9nBlBY4g==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -134,10 +134,10 @@
                 <SSIS:Property SSIS:Name="Name">unzip</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">57</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">102</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E4EA26E5-4D07-43AE-8674-FABDFDCE0B29}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A30A7E54-D585-4675-8A67-3426D9554B52}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -257,7 +257,48 @@
     </Manifest>
   </DeploymentModelSpecificContent>
   <ControlFlowParts />
-  <Miscellaneous />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>bcp.sql</Name>
+      <FullPath>bcp.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>copy table_stru.sql</Name>
+      <FullPath>copy table_stru.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ExecuteSQLSource.sql</Name>
+      <FullPath>ExecuteSQLSource.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>NEW Copy table stur.sql</Name>
+      <FullPath>NEW Copy table stur.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Table and columns info.xlsx</Name>
+      <FullPath>Table and columns info.xlsx</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>tableName.txt</Name>
+      <FullPath>tableName.txt</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>truncate tables.sql</Name>
+      <FullPath>truncate tables.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>zTblPath.csv</Name>
+      <FullPath>zTblPath.csv</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>zTblPath.sql</Name>
+      <FullPath>zTblPath.sql</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>zTblPath_2018-08-24.csv</Name>
+      <FullPath>zTblPath_2018-08-24.csv</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
