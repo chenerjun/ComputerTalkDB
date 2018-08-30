@@ -1,0 +1,8 @@
+????? CTReplication ???????
+1) ??ZIPSourceName ??F:\CTUpload\iceDB_KHP.zip
+2) ????? ExecuteProcess_Unzip_Source_Data
+	expression -> Arguments 
+	?????: "e" +  " "+  @[User::ZIPPath] + @[User::ZIPSourceName] + " -aoa"
+	??@[User::ZIPPath]
+	??? @[User::ZIPSourceName]
+	??: "e" +  " "+  @[User::ZIPSourceName] + " -aoa"
