@@ -2,19 +2,21 @@
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="8/5/2018 9:19:43 PM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="T530"
   DTS:CreatorName="T530\William"
-  DTS:DTSID="{72EB95DA-4E31-476D-9234-D343003919D0}"
-  DTS:ExecutableType="Microsoft.Package"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{C9377A3A-74ED-4E90-A7F7-8E71FFB53BDE}"
+  DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="14.0.3002.92"
   DTS:LocaleID="1033"
-  DTS:ObjectName="unzip"
+  DTS:ObjectName="DataReplication"
   DTS:PackageType="5"
-  DTS:VersionBuild="121"
-  DTS:VersionGUID="{03AB2676-577F-487C-9DE8-7667CFF8E0DA}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="141"
+  DTS:VersionGUID="{2043392A-6E11-4654-93F1-F41DB964E64D}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[DummyFileConnection]"
@@ -26,6 +28,16 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="\" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.ComputerTALKDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
+      DTS:ObjectName="localhost.ComputerTALKDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=ComputerTALKDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-unzip-{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}localhost.ComputerTALKDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -43,6 +55,24 @@
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{42190F04-E320-4840-8457-2C1871455332}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DBConnectionString">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=localhost;Initial Catalog=ComputerTALKDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2A1D15B8-4C2E-4ECB-A923-FBECD7CAA43B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileHolder">
+      <DTS:VariableValue
+        DTS:DataType="8">a.txt</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{A8C2FC97-53A4-4929-8C3A-34D3E21645CB}"
@@ -67,7 +97,7 @@
       DTS:CreationName=""
       DTS:DTSID="{CD2FFE7A-B55A-465E-897D-E7B7F193772D}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="@[$Project::ZIPPath] +  @[$Project::ProcessedPath]"
+      DTS:Expression="@[User::ZIPPath] +  @[User::ProcessedPath]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PrcoessedDst">
@@ -76,12 +106,21 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{82154A60-016E-45FE-8291-A76687335B2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessedPath">
+      <DTS:VariableValue
+        DTS:DataType="8">Processed\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{E9EFC1B7-078C-4328-A40C-E37BD68B975D}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ProcessFile">
       <DTS:VariableValue
-        DTS:DataType="11">-1</DTS:VariableValue>
+        DTS:DataType="11">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -96,12 +135,21 @@
       DTS:CreationName=""
       DTS:DTSID="{21C82AF7-9EC8-418F-B1A6-41C51195B4BF}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="@[$Project::ZIPPath]+ @[$Project::SourcePath]"
+      DTS:Expression="@[User::ZIPPath]+ @[User::SourcePath]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="RawSourcePath">
       <DTS:VariableValue
         DTS:DataType="8">C:\ComputerTALKDB\RAW\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E4D5F1FC-58DB-4F7E-8047-CDD26565C153}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">RAW\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -175,7 +223,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="varFinal">
       <DTS:VariableValue
-        DTS:DataType="11">-1</DTS:VariableValue>
+        DTS:DataType="11">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -186,14 +234,41 @@
       <DTS:VariableValue
         DTS:DataType="11">-1</DTS:VariableValue>
     </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{67E2A407-2E7D-4262-B70F-0C696917BF40}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ZipApp">
+      <DTS:VariableValue
+        DTS:DataType="8">c:\Program Files\7-Zip\7z.exe</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{756A3CE6-A2A9-4D2A-8996-74B02F3DCC17}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ZIPPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\ComputerTALKDB\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08F81195-AB33-476C-8B24-2064F0ADF065}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ZIPSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">iceDB_KHP.zip</DTS:VariableValue>
+    </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\ExecuteProcess_archive_BCP_err_file"
-      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute Process Task to archive all BCP err files in a Err_[Date]"
       DTS:DTSID="{A432FBE9-8B45-46A3-A321-5EAA9E516284}"
-      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteProcess_archive_BCP_err_file"
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -202,22 +277,22 @@
       <DTS:PropertyExpression
         DTS:Name="Arguments">" a   " +  "err_" + @[User::varDate] + ".7z   " + "*_"+ @[User::varDate]  + ".err" + "   -sdel"</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="Executable">@[$Project::ZipApp]</DTS:PropertyExpression>
+        DTS:Name="Executable">@[User::ZipApp]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="WorkingDirectory">@[$Project::ZIPPath] +  @[$Project::ProcessedPath]</DTS:PropertyExpression>
+        DTS:Name="WorkingDirectory">@[User::ZIPPath] +  @[User::ProcessedPath]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <ExecuteProcessData
-          Executable="C:\Program Files\7-Zip\7z.exe"
+          Executable="c:\Program Files\7-Zip\7z.exe"
           Arguments=" a   err_.7z   *_.err   -sdel"
           WorkingDirectory="C:\ComputerTALKDB\Processed\" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteProcess_archive_Processed_Data"
-      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute Process Task to archive Processed data file in &quot;processed_[Date].7z&quot;"
       DTS:DTSID="{E2807C07-7EC6-4368-A228-9CA229825114}"
-      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteProcess_archive_Processed_Data"
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -226,30 +301,30 @@
       <DTS:PropertyExpression
         DTS:Name="Arguments">"a    Processed_" +  @[User::varDate] + ".7z     *.dat     -sdel"</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="Executable">@[$Project::ZipApp]</DTS:PropertyExpression>
+        DTS:Name="Executable">@[User::ZipApp]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="WorkingDirectory">@[$Project::ZIPPath] +   @[$Project::ProcessedPath]</DTS:PropertyExpression>
+        DTS:Name="WorkingDirectory">@[User::ZIPPath] +   @[User::ProcessedPath]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <ExecuteProcessData
-          Executable="C:\Program Files\7-Zip\7z.exe"
+          Executable="c:\Program Files\7-Zip\7z.exe"
           Arguments="a    Processed_.7z     *.dat     -sdel"
           WorkingDirectory="C:\ComputerTALKDB\Processed\" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteProcess_Move_wfSubApplication_etc"
-      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute Process Task to remove all unnescessary files like wfsubapplication.dat"
       DTS:Disabled="True"
       DTS:DTSID="{8A5CE057-73C5-488C-B3F5-1CD4396909BE}"
-      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteProcess_Move_wfSubApplication_etc"
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:PropertyExpression
-        DTS:Name="Arguments">"/C  move  /Y  " +  @[$Project::ZIPPath] +  @[$Project::SourcePath] + "*.dat   "  +  @[$Project::ZIPPath]  + @[$Project::ProcessedPath]</DTS:PropertyExpression>
+        DTS:Name="Arguments">"/C  move  /Y  " +  @[User::ZIPPath] +  @[User::SourcePath] + "*.dat   "  +  @[User::ZIPPath]  + @[User::ProcessedPath]</DTS:PropertyExpression>
       <DTS:PropertyExpression
         DTS:Name="Executable">@[User::varCMD]</DTS:PropertyExpression>
       <DTS:ObjectData>
@@ -261,38 +336,38 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteProcess_Unzip_Source_Data"
-      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute Process Task"
       DTS:DTSID="{C1CC42EE-5C70-4AD3-9961-DFCE8F7FFE46}"
-      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteProcess_Unzip_Source_Data"
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:PropertyExpression
-        DTS:Name="Arguments">"e" +  " "+  @[$Project::ZIPPath]+ @[$Project::ZIPSourceName] + " -aoa"</DTS:PropertyExpression>
+        DTS:Name="Arguments">"e" +  " "+  @[User::ZIPPath] + @[User::ZIPSourceName] + " -aoa"</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="Executable">@[$Project::ZipApp]</DTS:PropertyExpression>
+        DTS:Name="Executable">@[User::ZipApp]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="WorkingDirectory">@[$Project::ZIPPath] +  @[$Project::SourcePath]</DTS:PropertyExpression>
+        DTS:Name="WorkingDirectory">@[User::ZIPPath] +  @[User::SourcePath]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <ExecuteProcessData
-          Executable="C:\Program Files\7-Zip\7z.exe"
+          Executable="c:\Program Files\7-Zip\7z.exe"
           Arguments="e C:\ComputerTALKDB\iceDB_KHP.zip -aoa"
           WorkingDirectory="C:\ComputerTALKDB\RAW\" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL _log_3"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{81841107-7BC9-494E-BEF0-CE7AC1D3B2B9}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL _log_3"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -333,10 +408,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Build_zTblPath"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{FA0250CC-5117-4712-9B65-FBC8CF2F5BA6}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Build_zTblPath"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -350,10 +425,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Create_Staging_Tables"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{1015B8D6-94AB-4F31-907E-BB45EEF31233}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Create_Staging_Tables"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -362,15 +437,15 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.z_ACDQueue', 'U') IS NULL    select top(0) * into z_ACDQueue&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ACDQueue                    ELSE TRUNCATE TABLE  z_ACDQueue&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Agent', 'U') IS NULL    select top(0) * into z_Agent&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Agent&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Agent&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_AgentAssignment', 'U') IS NULL    select top(0) * into z_AgentAssignment&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  AgentAssignment&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_AgentAssignment&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_AgentSkill', 'U') IS NULL    select top(0) * into z_AgentSkill&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  AgentSkill&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_AgentSkill&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_AreaCodes', 'U') IS NULL    select top(0) * into z_AreaCodes&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  AreaCodes&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_AreaCodes&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_AudioMessage', 'U') IS NULL    select top(0) * into z_AudioMessage&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  AudioMessage&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_AudioMessage&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Backlog_I', 'U') IS NULL    select top(0) * into z_Backlog_I&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Backlog_I&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Backlog_I&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_CallHistory', 'U') IS NULL    select top(0) * into z_CallHistory&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  CallHistory&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_CallHistory&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_CallTimeRules', 'U') IS NULL    select top(0) * into z_CallTimeRules&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  CallTimeRules&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_CallTimeRules&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_CampaignCallTimeRuleMap', 'U') IS NULL    select top(0) * into z_CampaignCallTimeRuleMap&#x9;&#x9;&#x9;&#x9; from  CampaignCallTimeRuleMap&#x9;&#x9;   ELSE TRUNCATE TABLE  z_CampaignCallTimeRuleMap&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_CampaignList', 'U') IS NULL    select top(0) * into z_CampaignList&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  CampaignList&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_CampaignList&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_CampaignLookup', 'U') IS NULL    select top(0) * into z_CampaignLookup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  CampaignLookup&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_CampaignLookup&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ClientVersionCompatibility', 'U') IS NULL    select top(0) * into z_ClientVersionCompatibility&#x9;&#x9;&#x9; from  ClientVersionCompatibility&#x9;   ELSE TRUNCATE TABLE  z_ClientVersionCompatibility&#x9;&#xA;IF OBJECT_ID('dbo.z_ConfigCategory', 'U') IS NULL    select top(0) * into z_ConfigCategory&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ConfigCategory&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ConfigCategory&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ConfigKey', 'U') IS NULL    select top(0) * into z_ConfigKey&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ConfigKey&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ConfigKey&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ConfigLanguageStrings', 'U') IS NULL    select top(0) * into z_ConfigLanguageStrings&#x9;&#x9;&#x9;&#x9; from  ConfigLanguageStrings&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ConfigLanguageStrings&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ConfigValue', 'U') IS NULL    select top(0) * into z_ConfigValue&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ConfigValue&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ConfigValue&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ContactRemarks', 'U') IS NULL    select top(0) * into z_ContactRemarks&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ContactRemarks&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ContactRemarks&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastoreActions', 'U') IS NULL    select top(0) * into z_DatastoreActions&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  DatastoreActions&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastoreActions&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastoreArchiveRules', 'U') IS NULL    select top(0) * into z_DatastoreArchiveRules&#x9;&#x9;&#x9;&#x9; from  DatastoreArchiveRules&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastoreArchiveRules&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastoreDetails', 'U') IS NULL    select top(0) * into z_DatastoreDetails&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  DatastoreDetails&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastoreDetails&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastoreFile', 'U') IS NULL    select top(0) * into z_DatastoreFile&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  DatastoreFile&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastoreFile&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastoreFileDetails', 'U') IS NULL    select top(0) * into z_DatastoreFileDetails&#x9;&#x9;&#x9;&#x9;&#x9; from  DatastoreFileDetails&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastoreFileDetails&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DatastorePurgeRules', 'U') IS NULL    select top(0) * into z_DatastorePurgeRules&#x9;&#x9;&#x9;&#x9;&#x9; from  DatastorePurgeRules&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DatastorePurgeRules&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Datastores', 'U') IS NULL    select top(0) * into z_Datastores&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Datastores&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Datastores&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DispositionNames', 'U') IS NULL    select top(0) * into z_DispositionNames&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  DispositionNames&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DispositionNames&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Dnis', 'U') IS NULL    select top(0) * into z_Dnis&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Dnis&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Dnis&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_DnisGroup', 'U') IS NULL    select top(0) * into z_DnisGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  DnisGroup&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_DnisGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Email', 'U') IS NULL    select top(0) * into z_Email&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Email&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Email&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EmailGroup', 'U') IS NULL    select top(0) * into z_EmailGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EmailGroup&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EmailGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Eval_Contact', 'U') IS NULL    select top(0) * into z_Eval_Contact&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Eval_Contact&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Eval_Contact&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalCategory', 'U') IS NULL    select top(0) * into z_EvalCategory&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalCategory&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalCategory&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalCriteria', 'U') IS NULL    select top(0) * into z_EvalCriteria&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalCriteria&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalCriteria&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalCriteriaValue', 'U') IS NULL    select top(0) * into z_EvalCriteriaValue&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalCriteriaValue&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalCriteriaValue&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalEvaluation', 'U') IS NULL    select top(0) * into z_EvalEvaluation&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalEvaluation&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalEvaluation&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalForm', 'U') IS NULL    select top(0) * into z_EvalForm&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalForm&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalForm&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalLangString', 'U') IS NULL    select top(0) * into z_EvalLangString&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalLangString&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalLangString&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalLangStringIds', 'U') IS NULL    select top(0) * into z_EvalLangStringIds&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalLangStringIds&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalLangStringIds&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_EvalScore', 'U') IS NULL    select top(0) * into z_EvalScore&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  EvalScore&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_EvalScore&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Fields', 'U') IS NULL    select top(0) * into z_Fields&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Fields&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Fields&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Holiday', 'U') IS NULL    select top(0) * into z_Holiday&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Holiday&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Holiday&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_HolidayLocationMap', 'U') IS NULL    select top(0) * into z_HolidayLocationMap&#x9;&#x9;&#x9;&#x9;&#x9; from  HolidayLocationMap&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_HolidayLocationMap&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Holidays', 'U') IS NULL    select top(0) * into z_Holidays&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Holidays&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Holidays&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_iceWebSettings_AlertHistory', 'U') IS NULL    select top(0) * into z_iceWebSettings_AlertHistory&#x9;&#x9;&#x9; from  iceWebSettings_AlertHistory&#x9;   ELSE TRUNCATE TABLE  z_iceWebSettings_AlertHistory&#x9;&#xA;IF OBJECT_ID('dbo.z_iceWebSettings_Alerts', 'U') IS NULL    select top(0) * into z_iceWebSettings_Alerts&#x9;&#x9;&#x9;&#x9; from  iceWebSettings_Alerts&#x9;&#x9;   ELSE TRUNCATE TABLE  z_iceWebSettings_Alerts&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_iceWebSettings_HiddenItems', 'U') IS NULL    select top(0) * into z_iceWebSettings_HiddenItems&#x9;&#x9;&#x9; from  iceWebSettings_HiddenItems&#x9;   ELSE TRUNCATE TABLE  z_iceWebSettings_HiddenItems&#x9;&#xA;IF OBJECT_ID('dbo.z_iceWebSettings_NameValuePairs', 'U') IS NULL    select top(0) * into z_iceWebSettings_NameValuePairs&#x9;&#x9; from  iceWebSettings_NameValuePairs   ELSE TRUNCATE TABLE  z_iceWebSettings_NameValuePairs&#x9;&#xA;IF OBJECT_ID('dbo.z_iceWebSettings_StatFormats', 'U') IS NULL    select top(0) * into z_iceWebSettings_StatFormats&#x9;&#x9;&#x9; from  iceWebSettings_StatFormats&#x9;   ELSE TRUNCATE TABLE  z_iceWebSettings_StatFormats&#x9;&#xA;IF OBJECT_ID('dbo.z_IMAddress', 'U') IS NULL    select top(0) * into z_IMAddress&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  IMAddress&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_IMAddress&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_IMGroup', 'U') IS NULL    select top(0) * into z_IMGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  IMGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_IMGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_IMRecording', 'U') IS NULL    select top(0) * into z_IMRecording&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  IMRecording&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_IMRecording&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Languages', 'U') IS NULL    select top(0) * into z_Languages&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Languages&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Languages&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_LOBName', 'U') IS NULL    select top(0) * into z_LOBName&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  LOBName&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_LOBName&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Locations', 'U') IS NULL    select top(0) * into z_Locations&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Locations&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Locations&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Lock', 'U') IS NULL    select top(0) * into z_Lock&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Lock&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Lock&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_MergeRecordings', 'U') IS NULL    select top(0) * into z_MergeRecordings&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  MergeRecordings&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_MergeRecordings&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_MergeRecordingsFileInfo', 'U') IS NULL    select top(0) * into z_MergeRecordingsFileInfo&#x9;&#x9;&#x9;&#x9; from  MergeRecordingsFileInfo&#x9;&#x9;   ELSE TRUNCATE TABLE  z_MergeRecordingsFileInfo&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Node', 'U') IS NULL    select top(0) * into z_Node&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Node&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Node&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_NotReadyReasonName', 'U') IS NULL    select top(0) * into z_NotReadyReasonName&#x9;&#x9;&#x9;&#x9;&#x9; from  NotReadyReasonName&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_NotReadyReasonName&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_OperatingDates', 'U') IS NULL    select top(0) * into z_OperatingDates&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  OperatingDates&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_OperatingDates&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ProspectList', 'U') IS NULL    select top(0) * into z_ProspectList&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  ProspectList&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_ProspectList&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_PVars_Purging', 'U') IS NULL    select top(0) * into z_PVars_Purging&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  PVars_Purging&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_PVars_Purging&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_QueueIDLookup', 'U') IS NULL    select top(0) * into z_QueueIDLookup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  QueueIDLookup&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_QueueIDLookup&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_RecordingOptions', 'U') IS NULL    select top(0) * into z_RecordingOptions&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  RecordingOptions&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_RecordingOptions&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Recordings', 'U') IS NULL    select top(0) * into z_Recordings&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Recordings&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Recordings&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_RecordingSchedules', 'U') IS NULL    select top(0) * into z_RecordingSchedules&#x9;&#x9;&#x9;&#x9;&#x9; from  RecordingSchedules&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_RecordingSchedules&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_RecordingsFaultedFiles', 'U') IS NULL    select top(0) * into z_RecordingsFaultedFiles&#x9;&#x9;&#x9;&#x9; from  RecordingsFaultedFiles&#x9;&#x9;   ELSE TRUNCATE TABLE  z_RecordingsFaultedFiles&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_RequiredSkill', 'U') IS NULL    select top(0) * into z_RequiredSkill&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  RequiredSkill&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_RequiredSkill&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_RoutingRule', 'U') IS NULL    select top(0) * into z_RoutingRule&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  RoutingRule&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_RoutingRule&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ScreenRecordingParameters', 'U') IS NULL    select top(0) * into z_ScreenRecordingParameters&#x9;&#x9;&#x9; from  ScreenRecordingParameters&#x9;   ELSE TRUNCATE TABLE  z_ScreenRecordingParameters&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_ScreenRecordingServerConfig', 'U') IS NULL    select top(0) * into z_ScreenRecordingServerConfig&#x9;&#x9;&#x9; from  ScreenRecordingServerConfig&#x9;   ELSE TRUNCATE TABLE  z_ScreenRecordingServerConfig&#x9;&#xA;IF OBJECT_ID('dbo.z_ScreenRecordingVendorInfo', 'U') IS NULL    select top(0) * into z_ScreenRecordingVendorInfo&#x9;&#x9;&#x9; from  ScreenRecordingVendorInfo&#x9;   ELSE TRUNCATE TABLE  z_ScreenRecordingVendorInfo&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_SIPGroup', 'U') IS NULL    select top(0) * into z_SIPGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  SIPGroup&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_SIPGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_SIPGroupCodec', 'U') IS NULL    select top(0) * into z_SIPGroupCodec&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  SIPGroupCodec&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_SIPGroupCodec&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_SIPGroupIdentity', 'U') IS NULL    select top(0) * into z_SIPGroupIdentity&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  SIPGroupIdentity&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_SIPGroupIdentity&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_SIPGroupTrustedDomain', 'U') IS NULL    select top(0) * into z_SIPGroupTrustedDomain&#x9;&#x9;&#x9;&#x9; from  SIPGroupTrustedDomain&#x9;&#x9;   ELSE TRUNCATE TABLE  z_SIPGroupTrustedDomain&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_SIPPort', 'U') IS NULL    select top(0) * into z_SIPPort&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  SIPPort&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_SIPPort&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Site', 'U') IS NULL    select top(0) * into z_Site&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Site&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Site&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Skill', 'U') IS NULL    select top(0) * into z_Skill&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Skill&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Skill&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_StartOfDayProspectCounts', 'U') IS NULL    select top(0) * into z_StartOfDayProspectCounts&#x9;&#x9;&#x9;&#x9; from  StartOfDayProspectCounts&#x9;   ELSE TRUNCATE TABLE  z_StartOfDayProspectCounts&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_ADR', 'U') IS NULL    select top(0) * into z_Stat_ADR&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_ADR&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_ADR&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_D', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_D&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_AgentActivity_D&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivity_D&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_I', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_I&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_AgentActivity_I&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivity_I&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_M', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_M&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_AgentActivity_M&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivity_M&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_W', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_W&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_AgentActivity_W&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivity_W&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_Y&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_AgentActivity_Y&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivity_Y&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_D', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_D&#x9;&#x9;&#x9; from  Stat_AgentActivityByQueue_D&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_D&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_I', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_I&#x9;&#x9;&#x9; from  Stat_AgentActivityByQueue_I&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_I&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_M', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_M&#x9;&#x9;&#x9; from  Stat_AgentActivityByQueue_M&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_M&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_W', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_W&#x9;&#x9;&#x9; from  Stat_AgentActivityByQueue_W&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_W&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_Y&#x9;&#x9;&#x9; from  Stat_AgentActivityByQueue_Y&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_Y&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_D', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_D&#x9;&#x9;&#x9; from  Stat_AgentLineOfBusiness_D&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_D&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_I', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_I&#x9;&#x9;&#x9; from  Stat_AgentLineOfBusiness_I&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_I&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_M', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_M&#x9;&#x9;&#x9; from  Stat_AgentLineOfBusiness_M&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_M&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_W', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_W&#x9;&#x9;&#x9; from  Stat_AgentLineOfBusiness_W&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_W&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_Y&#x9;&#x9;&#x9; from  Stat_AgentLineOfBusiness_Y&#x9;   ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_Y&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_D', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_D&#x9;&#x9; from  Stat_AgentNotReadyBreakdown_D   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_D&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_I', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_I&#x9;&#x9; from  Stat_AgentNotReadyBreakdown_I   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_I&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_M', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_M&#x9;&#x9; from  Stat_AgentNotReadyBreakdown_M   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_M&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_W', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_W&#x9;&#x9; from  Stat_AgentNotReadyBreakdown_W   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_W&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_Y&#x9;&#x9; from  Stat_AgentNotReadyBreakdown_Y   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_Y&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_CDR', 'U') IS NULL    select top(0) * into z_Stat_CDR&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_CDR&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_CDR&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_CDR_LastSummarized', 'U') IS NULL    select top(0) * into z_Stat_CDR_LastSummarized&#x9;&#x9;&#x9;&#x9; from  Stat_CDR_LastSummarized&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_CDR_LastSummarized&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_CDR_Summary', 'U') IS NULL    select top(0) * into z_Stat_CDR_Summary&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_CDR_Summary&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_CDR_Summary&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_D', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_D&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_DNISActivity_D&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_DNISActivity_D&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_I', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_I&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_DNISActivity_I&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_DNISActivity_I&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_M', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_M&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_DNISActivity_M&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_DNISActivity_M&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_W', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_W&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_DNISActivity_W&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_DNISActivity_W&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_Y&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_DNISActivity_Y&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_DNISActivity_Y&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_D', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_D&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_QueueActivity_D&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_QueueActivity_D&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_I', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_I&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_QueueActivity_I&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_QueueActivity_I&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_M', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_M&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_QueueActivity_M&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_QueueActivity_M&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_W', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_W&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_QueueActivity_W&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_QueueActivity_W&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_Y&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_QueueActivity_Y&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_QueueActivity_Y&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_D', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_D&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_SkillActivity_D&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_SkillActivity_D&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_I', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_I&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_SkillActivity_I&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_SkillActivity_I&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_M', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_M&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_SkillActivity_M&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_SkillActivity_M&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_W', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_W&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_SkillActivity_W&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_SkillActivity_W&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_Y&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_SkillActivity_Y&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_SkillActivity_Y&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_D', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_D&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_TrunkActivity_D&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_D&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_I', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_I&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_TrunkActivity_I&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_I&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_M', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_M&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_TrunkActivity_M&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_M&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_W', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_W&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_TrunkActivity_W&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_W&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_Y&#x9;&#x9;&#x9;&#x9;&#x9; from  Stat_TrunkActivity_Y&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_Y&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_D', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_D&#x9;&#x9; from  Stat_WorkflowActionActivity_D   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_D&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_I', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_I&#x9;&#x9; from  Stat_WorkflowActionActivity_I   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_I&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_M', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_M&#x9;&#x9; from  Stat_WorkflowActionActivity_M   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_M&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_W', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_W&#x9;&#x9; from  Stat_WorkflowActionActivity_W   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_W&#x9;&#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_Y&#x9;&#x9; from  Stat_WorkflowActionActivity_Y   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_Y&#x9;&#xA;IF OBJECT_ID('dbo.z_StatVersion', 'U') IS NULL    select top(0) * into z_StatVersion&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  StatVersion&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_StatVersion&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Switch', 'U') IS NULL    select top(0) * into z_Switch&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Switch&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Switch&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Team', 'U') IS NULL    select top(0) * into z_Team&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Team&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Team&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_TeamAssignment', 'U') IS NULL    select top(0) * into z_TeamAssignment&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  TeamAssignment&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_TeamAssignment&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_Trunk', 'U') IS NULL    select top(0) * into z_Trunk&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  Trunk&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_Trunk&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_TrunkGroup', 'U') IS NULL    select top(0) * into z_TrunkGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  TrunkGroup&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_TrunkGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_UCAddress', 'U') IS NULL    select top(0) * into z_UCAddress&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  UCAddress&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_UCAddress&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_UCGroup', 'U') IS NULL    select top(0) * into z_UCGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  UCGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_UCGroup&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WaitingList', 'U') IS NULL    select top(0) * into z_WaitingList&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WaitingList&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WaitingList&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfAction', 'U') IS NULL    select top(0) * into z_WfAction&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfAction&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfAction&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfAttributeDetail', 'U') IS NULL    select top(0) * into z_WfAttributeDetail&#x9;&#x9;&#x9;&#x9;&#x9; from  WfAttributeDetail&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfAttributeDetail&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfGraph', 'U') IS NULL    select top(0) * into z_WfGraph&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfGraph&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfGraph&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfLink', 'U') IS NULL    select top(0) * into z_WfLink&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfLink&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfLink&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfLinkDetail', 'U') IS NULL    select top(0) * into z_WfLinkDetail&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfLinkDetail&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfLinkDetail&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfPage', 'U') IS NULL    select top(0) * into z_WfPage&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfPage&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfPage&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfSubAppMethod', 'U') IS NULL    select top(0) * into z_WfSubAppMethod&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfSubAppMethod&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfSubAppMethod&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_WfVariables', 'U') IS NULL    select top(0) * into z_WfVariables&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; from  WfVariables&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_WfVariables&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;IF OBJECT_ID('dbo.z_zDBVersion', 'U') IS NULL    select top(0) * into z_zDBVersion                            from  zDBVersion&#x9;&#x9;&#x9;&#x9;&#x9;   ELSE TRUNCATE TABLE  z_zDBVersion                    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.z_ACDQueue', 'U') IS NULL    select top(0) * into z_ACDQueue         from  ACDQueue                    ELSE TRUNCATE TABLE  z_ACDQueue      &#xA;IF OBJECT_ID('dbo.z_Agent', 'U') IS NULL    select top(0) * into z_Agent         from  Agent         ELSE TRUNCATE TABLE  z_Agent       &#xA;IF OBJECT_ID('dbo.z_AgentAssignment', 'U') IS NULL    select top(0) * into z_AgentAssignment       from  AgentAssignment       ELSE TRUNCATE TABLE  z_AgentAssignment    &#xA;IF OBJECT_ID('dbo.z_AgentSkill', 'U') IS NULL    select top(0) * into z_AgentSkill        from  AgentSkill        ELSE TRUNCATE TABLE  z_AgentSkill     &#xA;IF OBJECT_ID('dbo.z_AreaCodes', 'U') IS NULL    select top(0) * into z_AreaCodes        from  AreaCodes        ELSE TRUNCATE TABLE  z_AreaCodes      &#xA;IF OBJECT_ID('dbo.z_AudioMessage', 'U') IS NULL    select top(0) * into z_AudioMessage        from  AudioMessage       ELSE TRUNCATE TABLE  z_AudioMessage     &#xA;IF OBJECT_ID('dbo.z_Backlog_I', 'U') IS NULL    select top(0) * into z_Backlog_I        from  Backlog_I        ELSE TRUNCATE TABLE  z_Backlog_I      &#xA;IF OBJECT_ID('dbo.z_CallHistory', 'U') IS NULL    select top(0) * into z_CallHistory        from  CallHistory        ELSE TRUNCATE TABLE  z_CallHistory     &#xA;IF OBJECT_ID('dbo.z_CallTimeRules', 'U') IS NULL    select top(0) * into z_CallTimeRules       from  CallTimeRules       ELSE TRUNCATE TABLE  z_CallTimeRules     &#xA;IF OBJECT_ID('dbo.z_CampaignCallTimeRuleMap', 'U') IS NULL    select top(0) * into z_CampaignCallTimeRuleMap     from  CampaignCallTimeRuleMap     ELSE TRUNCATE TABLE  z_CampaignCallTimeRuleMap  &#xA;IF OBJECT_ID('dbo.z_CampaignList', 'U') IS NULL    select top(0) * into z_CampaignList        from  CampaignList       ELSE TRUNCATE TABLE  z_CampaignList     &#xA;IF OBJECT_ID('dbo.z_CampaignLookup', 'U') IS NULL    select top(0) * into z_CampaignLookup       from  CampaignLookup       ELSE TRUNCATE TABLE  z_CampaignLookup    &#xA;IF OBJECT_ID('dbo.z_ClientVersionCompatibility', 'U') IS NULL    select top(0) * into z_ClientVersionCompatibility    from  ClientVersionCompatibility    ELSE TRUNCATE TABLE  z_ClientVersionCompatibility &#xA;IF OBJECT_ID('dbo.z_ConfigCategory', 'U') IS NULL    select top(0) * into z_ConfigCategory       from  ConfigCategory       ELSE TRUNCATE TABLE  z_ConfigCategory    &#xA;IF OBJECT_ID('dbo.z_ConfigKey', 'U') IS NULL    select top(0) * into z_ConfigKey        from  ConfigKey        ELSE TRUNCATE TABLE  z_ConfigKey      &#xA;IF OBJECT_ID('dbo.z_ConfigLanguageStrings', 'U') IS NULL    select top(0) * into z_ConfigLanguageStrings     from  ConfigLanguageStrings     ELSE TRUNCATE TABLE  z_ConfigLanguageStrings   &#xA;IF OBJECT_ID('dbo.z_ConfigValue', 'U') IS NULL    select top(0) * into z_ConfigValue        from  ConfigValue        ELSE TRUNCATE TABLE  z_ConfigValue     &#xA;IF OBJECT_ID('dbo.z_ContactRemarks', 'U') IS NULL    select top(0) * into z_ContactRemarks       from  ContactRemarks       ELSE TRUNCATE TABLE  z_ContactRemarks    &#xA;IF OBJECT_ID('dbo.z_DatastoreActions', 'U') IS NULL    select top(0) * into z_DatastoreActions       from  DatastoreActions      ELSE TRUNCATE TABLE  z_DatastoreActions    &#xA;IF OBJECT_ID('dbo.z_DatastoreArchiveRules', 'U') IS NULL    select top(0) * into z_DatastoreArchiveRules     from  DatastoreArchiveRules     ELSE TRUNCATE TABLE  z_DatastoreArchiveRules   &#xA;IF OBJECT_ID('dbo.z_DatastoreDetails', 'U') IS NULL    select top(0) * into z_DatastoreDetails       from  DatastoreDetails      ELSE TRUNCATE TABLE  z_DatastoreDetails    &#xA;IF OBJECT_ID('dbo.z_DatastoreFile', 'U') IS NULL    select top(0) * into z_DatastoreFile       from  DatastoreFile       ELSE TRUNCATE TABLE  z_DatastoreFile     &#xA;IF OBJECT_ID('dbo.z_DatastoreFileDetails', 'U') IS NULL    select top(0) * into z_DatastoreFileDetails      from  DatastoreFileDetails     ELSE TRUNCATE TABLE  z_DatastoreFileDetails   &#xA;IF OBJECT_ID('dbo.z_DatastorePurgeRules', 'U') IS NULL    select top(0) * into z_DatastorePurgeRules      from  DatastorePurgeRules      ELSE TRUNCATE TABLE  z_DatastorePurgeRules   &#xA;IF OBJECT_ID('dbo.z_Datastores', 'U') IS NULL    select top(0) * into z_Datastores        from  Datastores        ELSE TRUNCATE TABLE  z_Datastores     &#xA;IF OBJECT_ID('dbo.z_DispositionNames', 'U') IS NULL    select top(0) * into z_DispositionNames       from  DispositionNames      ELSE TRUNCATE TABLE  z_DispositionNames    &#xA;IF OBJECT_ID('dbo.z_Dnis', 'U') IS NULL    select top(0) * into z_Dnis          from  Dnis         ELSE TRUNCATE TABLE  z_Dnis       &#xA;IF OBJECT_ID('dbo.z_DnisGroup', 'U') IS NULL    select top(0) * into z_DnisGroup        from  DnisGroup        ELSE TRUNCATE TABLE  z_DnisGroup      &#xA;IF OBJECT_ID('dbo.z_Email', 'U') IS NULL    select top(0) * into z_Email         from  Email         ELSE TRUNCATE TABLE  z_Email       &#xA;IF OBJECT_ID('dbo.z_EmailGroup', 'U') IS NULL    select top(0) * into z_EmailGroup        from  EmailGroup        ELSE TRUNCATE TABLE  z_EmailGroup     &#xA;IF OBJECT_ID('dbo.z_Eval_Contact', 'U') IS NULL    select top(0) * into z_Eval_Contact        from  Eval_Contact       ELSE TRUNCATE TABLE  z_Eval_Contact     &#xA;IF OBJECT_ID('dbo.z_EvalCategory', 'U') IS NULL    select top(0) * into z_EvalCategory        from  EvalCategory       ELSE TRUNCATE TABLE  z_EvalCategory     &#xA;IF OBJECT_ID('dbo.z_EvalCriteria', 'U') IS NULL    select top(0) * into z_EvalCriteria        from  EvalCriteria       ELSE TRUNCATE TABLE  z_EvalCriteria     &#xA;IF OBJECT_ID('dbo.z_EvalCriteriaValue', 'U') IS NULL    select top(0) * into z_EvalCriteriaValue      from  EvalCriteriaValue      ELSE TRUNCATE TABLE  z_EvalCriteriaValue    &#xA;IF OBJECT_ID('dbo.z_EvalEvaluation', 'U') IS NULL    select top(0) * into z_EvalEvaluation       from  EvalEvaluation       ELSE TRUNCATE TABLE  z_EvalEvaluation    &#xA;IF OBJECT_ID('dbo.z_EvalForm', 'U') IS NULL    select top(0) * into z_EvalForm         from  EvalForm        ELSE TRUNCATE TABLE  z_EvalForm      &#xA;IF OBJECT_ID('dbo.z_EvalLangString', 'U') IS NULL    select top(0) * into z_EvalLangString       from  EvalLangString       ELSE TRUNCATE TABLE  z_EvalLangString    &#xA;IF OBJECT_ID('dbo.z_EvalLangStringIds', 'U') IS NULL    select top(0) * into z_EvalLangStringIds      from  EvalLangStringIds      ELSE TRUNCATE TABLE  z_EvalLangStringIds    &#xA;IF OBJECT_ID('dbo.z_EvalScore', 'U') IS NULL    select top(0) * into z_EvalScore        from  EvalScore        ELSE TRUNCATE TABLE  z_EvalScore      &#xA;IF OBJECT_ID('dbo.z_Fields', 'U') IS NULL    select top(0) * into z_Fields         from  Fields         ELSE TRUNCATE TABLE  z_Fields      &#xA;IF OBJECT_ID('dbo.z_Holiday', 'U') IS NULL    select top(0) * into z_Holiday         from  Holiday         ELSE TRUNCATE TABLE  z_Holiday      &#xA;IF OBJECT_ID('dbo.z_HolidayLocationMap', 'U') IS NULL    select top(0) * into z_HolidayLocationMap      from  HolidayLocationMap      ELSE TRUNCATE TABLE  z_HolidayLocationMap   &#xA;IF OBJECT_ID('dbo.z_Holidays', 'U') IS NULL    select top(0) * into z_Holidays         from  Holidays        ELSE TRUNCATE TABLE  z_Holidays      &#xA;IF OBJECT_ID('dbo.z_iceWebSettings_AlertHistory', 'U') IS NULL    select top(0) * into z_iceWebSettings_AlertHistory    from  iceWebSettings_AlertHistory    ELSE TRUNCATE TABLE  z_iceWebSettings_AlertHistory &#xA;IF OBJECT_ID('dbo.z_iceWebSettings_Alerts', 'U') IS NULL    select top(0) * into z_iceWebSettings_Alerts     from  iceWebSettings_Alerts     ELSE TRUNCATE TABLE  z_iceWebSettings_Alerts   &#xA;IF OBJECT_ID('dbo.z_iceWebSettings_HiddenItems', 'U') IS NULL    select top(0) * into z_iceWebSettings_HiddenItems    from  iceWebSettings_HiddenItems    ELSE TRUNCATE TABLE  z_iceWebSettings_HiddenItems &#xA;IF OBJECT_ID('dbo.z_iceWebSettings_NameValuePairs', 'U') IS NULL    select top(0) * into z_iceWebSettings_NameValuePairs   from  iceWebSettings_NameValuePairs   ELSE TRUNCATE TABLE  z_iceWebSettings_NameValuePairs &#xA;IF OBJECT_ID('dbo.z_iceWebSettings_StatFormats', 'U') IS NULL    select top(0) * into z_iceWebSettings_StatFormats    from  iceWebSettings_StatFormats    ELSE TRUNCATE TABLE  z_iceWebSettings_StatFormats &#xA;IF OBJECT_ID('dbo.z_IMAddress', 'U') IS NULL    select top(0) * into z_IMAddress        from  IMAddress        ELSE TRUNCATE TABLE  z_IMAddress      &#xA;IF OBJECT_ID('dbo.z_IMGroup', 'U') IS NULL    select top(0) * into z_IMGroup         from  IMGroup         ELSE TRUNCATE TABLE  z_IMGroup      &#xA;IF OBJECT_ID('dbo.z_IMRecording', 'U') IS NULL    select top(0) * into z_IMRecording        from  IMRecording        ELSE TRUNCATE TABLE  z_IMRecording     &#xA;IF OBJECT_ID('dbo.z_Languages', 'U') IS NULL    select top(0) * into z_Languages        from  Languages        ELSE TRUNCATE TABLE  z_Languages      &#xA;IF OBJECT_ID('dbo.z_LOBName', 'U') IS NULL    select top(0) * into z_LOBName         from  LOBName         ELSE TRUNCATE TABLE  z_LOBName      &#xA;IF OBJECT_ID('dbo.z_Locations', 'U') IS NULL    select top(0) * into z_Locations        from  Locations        ELSE TRUNCATE TABLE  z_Locations      &#xA;IF OBJECT_ID('dbo.z_Lock', 'U') IS NULL    select top(0) * into z_Lock          from  Lock         ELSE TRUNCATE TABLE  z_Lock       &#xA;IF OBJECT_ID('dbo.z_MergeRecordings', 'U') IS NULL    select top(0) * into z_MergeRecordings       from  MergeRecordings       ELSE TRUNCATE TABLE  z_MergeRecordings    &#xA;IF OBJECT_ID('dbo.z_MergeRecordingsFileInfo', 'U') IS NULL    select top(0) * into z_MergeRecordingsFileInfo     from  MergeRecordingsFileInfo     ELSE TRUNCATE TABLE  z_MergeRecordingsFileInfo  &#xA;IF OBJECT_ID('dbo.z_Node', 'U') IS NULL    select top(0) * into z_Node          from  Node         ELSE TRUNCATE TABLE  z_Node       &#xA;IF OBJECT_ID('dbo.z_NotReadyReasonName', 'U') IS NULL    select top(0) * into z_NotReadyReasonName      from  NotReadyReasonName      ELSE TRUNCATE TABLE  z_NotReadyReasonName   &#xA;IF OBJECT_ID('dbo.z_OperatingDates', 'U') IS NULL    select top(0) * into z_OperatingDates       from  OperatingDates       ELSE TRUNCATE TABLE  z_OperatingDates    &#xA;IF OBJECT_ID('dbo.z_ProspectList', 'U') IS NULL    select top(0) * into z_ProspectList        from  ProspectList       ELSE TRUNCATE TABLE  z_ProspectList     &#xA;IF OBJECT_ID('dbo.z_PVars_Purging', 'U') IS NULL    select top(0) * into z_PVars_Purging       from  PVars_Purging       ELSE TRUNCATE TABLE  z_PVars_Purging     &#xA;IF OBJECT_ID('dbo.z_QueueIDLookup', 'U') IS NULL    select top(0) * into z_QueueIDLookup       from  QueueIDLookup       ELSE TRUNCATE TABLE  z_QueueIDLookup     &#xA;IF OBJECT_ID('dbo.z_RecordingOptions', 'U') IS NULL    select top(0) * into z_RecordingOptions       from  RecordingOptions      ELSE TRUNCATE TABLE  z_RecordingOptions    &#xA;IF OBJECT_ID('dbo.z_Recordings', 'U') IS NULL    select top(0) * into z_Recordings        from  Recordings        ELSE TRUNCATE TABLE  z_Recordings     &#xA;IF OBJECT_ID('dbo.z_RecordingSchedules', 'U') IS NULL    select top(0) * into z_RecordingSchedules      from  RecordingSchedules      ELSE TRUNCATE TABLE  z_RecordingSchedules   &#xA;IF OBJECT_ID('dbo.z_RecordingsFaultedFiles', 'U') IS NULL    select top(0) * into z_RecordingsFaultedFiles     from  RecordingsFaultedFiles     ELSE TRUNCATE TABLE  z_RecordingsFaultedFiles  &#xA;IF OBJECT_ID('dbo.z_RequiredSkill', 'U') IS NULL    select top(0) * into z_RequiredSkill       from  RequiredSkill       ELSE TRUNCATE TABLE  z_RequiredSkill     &#xA;IF OBJECT_ID('dbo.z_RoutingRule', 'U') IS NULL    select top(0) * into z_RoutingRule        from  RoutingRule        ELSE TRUNCATE TABLE  z_RoutingRule     &#xA;IF OBJECT_ID('dbo.z_ScreenRecordingParameters', 'U') IS NULL    select top(0) * into z_ScreenRecordingParameters    from  ScreenRecordingParameters    ELSE TRUNCATE TABLE  z_ScreenRecordingParameters  &#xA;IF OBJECT_ID('dbo.z_ScreenRecordingServerConfig', 'U') IS NULL    select top(0) * into z_ScreenRecordingServerConfig    from  ScreenRecordingServerConfig    ELSE TRUNCATE TABLE  z_ScreenRecordingServerConfig &#xA;IF OBJECT_ID('dbo.z_ScreenRecordingVendorInfo', 'U') IS NULL    select top(0) * into z_ScreenRecordingVendorInfo    from  ScreenRecordingVendorInfo    ELSE TRUNCATE TABLE  z_ScreenRecordingVendorInfo  &#xA;IF OBJECT_ID('dbo.z_SIPGroup', 'U') IS NULL    select top(0) * into z_SIPGroup         from  SIPGroup        ELSE TRUNCATE TABLE  z_SIPGroup      &#xA;IF OBJECT_ID('dbo.z_SIPGroupCodec', 'U') IS NULL    select top(0) * into z_SIPGroupCodec       from  SIPGroupCodec       ELSE TRUNCATE TABLE  z_SIPGroupCodec     &#xA;IF OBJECT_ID('dbo.z_SIPGroupIdentity', 'U') IS NULL    select top(0) * into z_SIPGroupIdentity       from  SIPGroupIdentity      ELSE TRUNCATE TABLE  z_SIPGroupIdentity    &#xA;IF OBJECT_ID('dbo.z_SIPGroupTrustedDomain', 'U') IS NULL    select top(0) * into z_SIPGroupTrustedDomain     from  SIPGroupTrustedDomain     ELSE TRUNCATE TABLE  z_SIPGroupTrustedDomain   &#xA;IF OBJECT_ID('dbo.z_SIPPort', 'U') IS NULL    select top(0) * into z_SIPPort         from  SIPPort         ELSE TRUNCATE TABLE  z_SIPPort      &#xA;IF OBJECT_ID('dbo.z_Site', 'U') IS NULL    select top(0) * into z_Site          from  Site         ELSE TRUNCATE TABLE  z_Site       &#xA;IF OBJECT_ID('dbo.z_Skill', 'U') IS NULL    select top(0) * into z_Skill         from  Skill         ELSE TRUNCATE TABLE  z_Skill       &#xA;IF OBJECT_ID('dbo.z_StartOfDayProspectCounts', 'U') IS NULL    select top(0) * into z_StartOfDayProspectCounts     from  StartOfDayProspectCounts    ELSE TRUNCATE TABLE  z_StartOfDayProspectCounts  &#xA;IF OBJECT_ID('dbo.z_Stat_ADR', 'U') IS NULL    select top(0) * into z_Stat_ADR         from  Stat_ADR        ELSE TRUNCATE TABLE  z_Stat_ADR      &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_D', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_D      from  Stat_AgentActivity_D     ELSE TRUNCATE TABLE  z_Stat_AgentActivity_D   &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_I', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_I      from  Stat_AgentActivity_I     ELSE TRUNCATE TABLE  z_Stat_AgentActivity_I   &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_M', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_M      from  Stat_AgentActivity_M     ELSE TRUNCATE TABLE  z_Stat_AgentActivity_M   &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_W', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_W      from  Stat_AgentActivity_W     ELSE TRUNCATE TABLE  z_Stat_AgentActivity_W   &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentActivity_Y      from  Stat_AgentActivity_Y     ELSE TRUNCATE TABLE  z_Stat_AgentActivity_Y   &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_D', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_D    from  Stat_AgentActivityByQueue_D    ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_D &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_I', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_I    from  Stat_AgentActivityByQueue_I    ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_I &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_M', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_M    from  Stat_AgentActivityByQueue_M    ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_M &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_W', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_W    from  Stat_AgentActivityByQueue_W    ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_W &#xA;IF OBJECT_ID('dbo.z_Stat_AgentActivityByQueue_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentActivityByQueue_Y    from  Stat_AgentActivityByQueue_Y    ELSE TRUNCATE TABLE  z_Stat_AgentActivityByQueue_Y &#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_D', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_D    from  Stat_AgentLineOfBusiness_D    ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_D &#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_I', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_I    from  Stat_AgentLineOfBusiness_I    ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_I &#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_M', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_M    from  Stat_AgentLineOfBusiness_M    ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_M &#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_W', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_W    from  Stat_AgentLineOfBusiness_W    ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_W &#xA;IF OBJECT_ID('dbo.z_Stat_AgentLineOfBusiness_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentLineOfBusiness_Y    from  Stat_AgentLineOfBusiness_Y    ELSE TRUNCATE TABLE  z_Stat_AgentLineOfBusiness_Y &#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_D', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_D   from  Stat_AgentNotReadyBreakdown_D   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_D &#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_I', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_I   from  Stat_AgentNotReadyBreakdown_I   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_I &#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_M', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_M   from  Stat_AgentNotReadyBreakdown_M   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_M &#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_W', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_W   from  Stat_AgentNotReadyBreakdown_W   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_W &#xA;IF OBJECT_ID('dbo.z_Stat_AgentNotReadyBreakdown_Y', 'U') IS NULL    select top(0) * into z_Stat_AgentNotReadyBreakdown_Y   from  Stat_AgentNotReadyBreakdown_Y   ELSE TRUNCATE TABLE  z_Stat_AgentNotReadyBreakdown_Y &#xA;IF OBJECT_ID('dbo.z_Stat_CDR', 'U') IS NULL    select top(0) * into z_Stat_CDR         from  Stat_CDR        ELSE TRUNCATE TABLE  z_Stat_CDR      &#xA;IF OBJECT_ID('dbo.z_Stat_CDR_LastSummarized', 'U') IS NULL    select top(0) * into z_Stat_CDR_LastSummarized     from  Stat_CDR_LastSummarized     ELSE TRUNCATE TABLE  z_Stat_CDR_LastSummarized  &#xA;IF OBJECT_ID('dbo.z_Stat_CDR_Summary', 'U') IS NULL    select top(0) * into z_Stat_CDR_Summary       from  Stat_CDR_Summary      ELSE TRUNCATE TABLE  z_Stat_CDR_Summary    &#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_D', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_D      from  Stat_DNISActivity_D      ELSE TRUNCATE TABLE  z_Stat_DNISActivity_D   &#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_I', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_I      from  Stat_DNISActivity_I      ELSE TRUNCATE TABLE  z_Stat_DNISActivity_I   &#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_M', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_M      from  Stat_DNISActivity_M      ELSE TRUNCATE TABLE  z_Stat_DNISActivity_M   &#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_W', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_W      from  Stat_DNISActivity_W      ELSE TRUNCATE TABLE  z_Stat_DNISActivity_W   &#xA;IF OBJECT_ID('dbo.z_Stat_DNISActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_DNISActivity_Y      from  Stat_DNISActivity_Y      ELSE TRUNCATE TABLE  z_Stat_DNISActivity_Y   &#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_D', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_D      from  Stat_QueueActivity_D     ELSE TRUNCATE TABLE  z_Stat_QueueActivity_D   &#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_I', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_I      from  Stat_QueueActivity_I     ELSE TRUNCATE TABLE  z_Stat_QueueActivity_I   &#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_M', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_M      from  Stat_QueueActivity_M     ELSE TRUNCATE TABLE  z_Stat_QueueActivity_M   &#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_W', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_W      from  Stat_QueueActivity_W     ELSE TRUNCATE TABLE  z_Stat_QueueActivity_W   &#xA;IF OBJECT_ID('dbo.z_Stat_QueueActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_QueueActivity_Y      from  Stat_QueueActivity_Y     ELSE TRUNCATE TABLE  z_Stat_QueueActivity_Y   &#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_D', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_D      from  Stat_SkillActivity_D     ELSE TRUNCATE TABLE  z_Stat_SkillActivity_D   &#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_I', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_I      from  Stat_SkillActivity_I     ELSE TRUNCATE TABLE  z_Stat_SkillActivity_I   &#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_M', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_M      from  Stat_SkillActivity_M     ELSE TRUNCATE TABLE  z_Stat_SkillActivity_M   &#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_W', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_W      from  Stat_SkillActivity_W     ELSE TRUNCATE TABLE  z_Stat_SkillActivity_W   &#xA;IF OBJECT_ID('dbo.z_Stat_SkillActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_SkillActivity_Y      from  Stat_SkillActivity_Y     ELSE TRUNCATE TABLE  z_Stat_SkillActivity_Y   &#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_D', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_D      from  Stat_TrunkActivity_D     ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_D   &#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_I', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_I      from  Stat_TrunkActivity_I     ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_I   &#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_M', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_M      from  Stat_TrunkActivity_M     ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_M   &#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_W', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_W      from  Stat_TrunkActivity_W     ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_W   &#xA;IF OBJECT_ID('dbo.z_Stat_TrunkActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_TrunkActivity_Y      from  Stat_TrunkActivity_Y     ELSE TRUNCATE TABLE  z_Stat_TrunkActivity_Y   &#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_D', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_D   from  Stat_WorkflowActionActivity_D   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_D &#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_I', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_I   from  Stat_WorkflowActionActivity_I   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_I &#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_M', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_M   from  Stat_WorkflowActionActivity_M   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_M &#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_W', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_W   from  Stat_WorkflowActionActivity_W   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_W &#xA;IF OBJECT_ID('dbo.z_Stat_WorkflowActionActivity_Y', 'U') IS NULL    select top(0) * into z_Stat_WorkflowActionActivity_Y   from  Stat_WorkflowActionActivity_Y   ELSE TRUNCATE TABLE  z_Stat_WorkflowActionActivity_Y &#xA;IF OBJECT_ID('dbo.z_StatVersion', 'U') IS NULL    select top(0) * into z_StatVersion        from  StatVersion        ELSE TRUNCATE TABLE  z_StatVersion     &#xA;IF OBJECT_ID('dbo.z_Switch', 'U') IS NULL    select top(0) * into z_Switch         from  Switch         ELSE TRUNCATE TABLE  z_Switch      &#xA;     &#xA;IF OBJECT_ID('dbo.z_Team', 'U') IS NULL    select top(0) * into z_Team          from  Team         ELSE TRUNCATE TABLE  z_Team       &#xA;IF OBJECT_ID('dbo.z_TeamAssignment', 'U') IS NULL    select top(0) * into z_TeamAssignment       from  TeamAssignment       ELSE TRUNCATE TABLE  z_TeamAssignment    &#xA;IF OBJECT_ID('dbo.z_Trunk', 'U') IS NULL    select top(0) * into z_Trunk         from  Trunk         ELSE TRUNCATE TABLE  z_Trunk       &#xA;IF OBJECT_ID('dbo.z_TrunkGroup', 'U') IS NULL    select top(0) * into z_TrunkGroup        from  TrunkGroup        ELSE TRUNCATE TABLE  z_TrunkGroup     &#xA;IF OBJECT_ID('dbo.z_UCAddress', 'U') IS NULL    select top(0) * into z_UCAddress        from  UCAddress        ELSE TRUNCATE TABLE  z_UCAddress      &#xA;IF OBJECT_ID('dbo.z_UCGroup', 'U') IS NULL    select top(0) * into z_UCGroup         from  UCGroup         ELSE TRUNCATE TABLE  z_UCGroup      &#xA;IF OBJECT_ID('dbo.z_WaitingList', 'U') IS NULL    select top(0) * into z_WaitingList        from  WaitingList        ELSE TRUNCATE TABLE  z_WaitingList     &#xA;IF OBJECT_ID('dbo.z_WfAction', 'U') IS NULL    select top(0) * into z_WfAction         from  WfAction        ELSE TRUNCATE TABLE  z_WfAction      &#xA;IF OBJECT_ID('dbo.z_WfAttributeDetail', 'U') IS NULL    select top(0) * into z_WfAttributeDetail      from  WfAttributeDetail      ELSE TRUNCATE TABLE  z_WfAttributeDetail    &#xA;IF OBJECT_ID('dbo.z_WfGraph', 'U') IS NULL    select top(0) * into z_WfGraph         from  WfGraph         ELSE TRUNCATE TABLE  z_WfGraph      &#xA;IF OBJECT_ID('dbo.z_WfLink', 'U') IS NULL    select top(0) * into z_WfLink         from  WfLink         ELSE TRUNCATE TABLE  z_WfLink      &#xA;IF OBJECT_ID('dbo.z_WfLinkDetail', 'U') IS NULL    select top(0) * into z_WfLinkDetail        from  WfLinkDetail       ELSE TRUNCATE TABLE  z_WfLinkDetail     &#xA;IF OBJECT_ID('dbo.z_WfPage', 'U') IS NULL    select top(0) * into z_WfPage         from  WfPage         ELSE TRUNCATE TABLE  z_WfPage      &#xA;   &#xA;IF OBJECT_ID('dbo.z_WfSubAppMethod', 'U') IS NULL    select top(0) * into z_WfSubAppMethod       from  WfSubAppMethod       ELSE TRUNCATE TABLE  z_WfSubAppMethod    &#xA;IF OBJECT_ID('dbo.z_WfVariables', 'U') IS NULL    select top(0) * into z_WfVariables        from  WfVariables        ELSE TRUNCATE TABLE  z_WfVariables     &#xA;IF OBJECT_ID('dbo.z_zDBVersion', 'U') IS NULL    select top(0) * into z_zDBVersion                            from  zDBVersion        ELSE TRUNCATE TABLE  z_zDBVersion                    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Disable_All_Constrains"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task to Disable all constraints for database"
       DTS:DTSID="{461D9E63-10B7-46C4-A56B-FE553907566B}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Disable_All_Constrains"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -384,10 +459,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Disable_Trigers"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{8EFB5A47-EAC7-40F4-8EF6-2D0BAB82B1E8}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Disable_Trigers"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -401,10 +476,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Drop_Table_zTblPath"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{0FDE991D-0F1D-4FA4-8D42-F33368B4F83B}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Drop_Table_zTblPath"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -413,15 +488,15 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.zTblPath', 'U') IS NOT NULL &#xA;&#x9;DROP TABLE [dbo].[zTblPath];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.zTblPath', 'U') IS NOT NULL &#xA; DROP TABLE [dbo].[zTblPath];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Enable_all_constraints"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task to re-enable all constraints"
       DTS:DTSID="{3C07A86F-F004-43BB-8368-773F94A08DCC}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Enable_all_constraints"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -435,29 +510,12 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Enable_Trigers"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{64B3B519-FF33-4F50-A625-E798479734C2}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Enable_Trigers"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
-          SQLTask:SqlStatementSource="alter table PVars_Purging enable  trigger VoidDelete_PVars_Purging;&#xA;&#xA;alter table PVars_Purging enable  trigger VoidInsert_PVars_Purging;&#xA;&#xA;&#xA;&#xA;alter table StatVersion enable trigger VoidDelete_StatVersion;&#xA;&#xA;alter table StatVersion enable trigger VoidInsert_StatVersion;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\ExecuteSQL_Enable_Trigers_2"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{A50969B0-FFE5-4AB7-9777-FCA90FF0CDFC}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="ExecuteSQL_Enable_Trigers_2"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -468,11 +526,28 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\ExecuteSQL_Enable_Trigers_2"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A50969B0-FFE5-4AB7-9777-FCA90FF0CDFC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecuteSQL_Enable_Trigers_2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C92F1C56-3774-45CD-9E63-2A4EB9B3B624}"
+          SQLTask:SqlStatementSource="alter table PVars_Purging enable  trigger VoidDelete_PVars_Purging;&#xA;&#xA;alter table PVars_Purging enable  trigger VoidInsert_PVars_Purging;&#xA;&#xA;&#xA;&#xA;alter table StatVersion enable trigger VoidDelete_StatVersion;&#xA;&#xA;alter table StatVersion enable trigger VoidInsert_StatVersion;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\ExecuteSQL_log_1"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{77D29873-99D1-4693-B66F-71C27E88C4A3}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_log_1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -517,10 +592,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_log_2"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{350A57CD-F9E1-4227-888E-DEA6DC5FE33A}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_log_2"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -565,14 +640,14 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Log_ETL"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{F8A6D9FD-C117-4599-8F28-5B8A564DE67A}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Log_ETL"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -613,10 +688,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExecuteSQL_Read_TableInfo_from_zTblPath"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{77664C16-D725-410F-BC34-990E5A43C57E}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQL_Read_TableInfo_from_zTblPath"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -635,14 +710,14 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Expressiiom_set_VarConstraints_False"
-      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Expression Task"
       DTS:DTSID="{3D1482BF-81AC-4A0E-83C2-825D8A906535}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Expressiiom_set_VarConstraints_False"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -651,10 +726,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Expression_Date_to_vardate"
-      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Expression Task"
       DTS:DTSID="{BDCCCB76-AF3F-4080-8EE8-97E0E64914D6}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Expression_Date_to_vardate"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -666,15 +741,30 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Expression_Set_varTriger_False"
-      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:refId="Package\Expression_set_varFinal_to_True"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Expression Task"
-      DTS:DTSID="{EE74FE0F-2E21-4B6F-A9E9-D3873982B483}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:DTSID="{B23419A9-D150-4155-9E04-0CCB8258E381}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Expression_Set_varTriger_False"
-      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ObjectName="Expression_set_varFinal_to_True"
       DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::varFinal] = True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression_set_varTriger_False"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{2726D21B-0766-4910-B02C-6CE7C32BAEA1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression_set_varTriger_False"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -682,15 +772,15 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Expression_set_varTriger_False"
-      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:refId="Package\Expression_Set_varTriger_False"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Expression Task"
-      DTS:DTSID="{2726D21B-0766-4910-B02C-6CE7C32BAEA1}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:DTSID="{EE74FE0F-2E21-4B6F-A9E9-D3873982B483}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Expression_set_varTriger_False"
+      DTS:ObjectName="Expression_Set_varTriger_False"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -706,7 +796,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="ForeachLoop_Staging_table_and_Processing_One_by_One">
       <DTS:ForEachEnumerator
-        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
         DTS:DTSID="{6606408E-0A96-47D7-A8E9-E598F1D9F277}"
         DTS:ObjectName="{6606408E-0A96-47D7-A8E9-E598F1D9F277}">
         <DTS:ObjectData>
@@ -719,10 +809,10 @@
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task to read staging table name and source file name with path, then BCP load source data to staging table one by one."
           DTS:DTSID="{51F83AA5-5D53-4320-9F3B-AA81AAFD4401}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -755,10 +845,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_DROP_Emptry_Staging_Table_One_by_One"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{444A89A0-6136-4AC1-8112-840508AC1AC4}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExecuteSQL_DROP_Emptry_Staging_Table_One_by_One"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -779,10 +869,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_DROP_Processed_Staging_Table_One_by_One"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{15d78591-e06a-46b6-8559-884f9528e26e}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExecuteSQL_DROP_Processed_Staging_Table_One_by_One"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -803,10 +893,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_Merge_Tables_one_by_one"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{EC8EE491-91AE-4D03-ADD3-21BAF25AF86B}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExecuteSQL_Merge_Tables_one_by_one"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -827,10 +917,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Expression_count_Successfully_processing"
-          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Expression Task"
           DTS:DTSID="{212B5232-C257-424C-AA0C-0B7CBD61D9BA}"
-          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_count_Successfully_processing"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -843,10 +933,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Expression_count_Unprocess_Files"
-          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Expression Task"
           DTS:DTSID="{D51E258B-DBB7-4723-82EA-F4095D095328}"
-          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_count_Unprocess_Files"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -859,10 +949,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Expression_reset_ProcessedFile_to_false"
-          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Expression Task"
           DTS:DTSID="{06573E30-A9D5-47C0-B19F-81A5729ECC0B}"
-          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Expression_reset_ProcessedFile_to_false"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -875,10 +965,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\FileSystem_move_FileToProcessed"
-          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="File System Task"
           DTS:DTSID="{8ED95087-D5AA-4BEA-B37C-0AD776758A7A}"
-          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="FileSystem_move_FileToProcessed"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -894,10 +984,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\Script_Check_File_exist_And_NotEmpty"
-          DTS:CreationName="Microsoft.ScriptTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Script Task"
           DTS:DTSID="{0ED991B7-2108-49E2-8614-775FA149118D}"
-          DTS:ExecutableType="Microsoft.ScriptTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Script_Check_File_exist_And_NotEmpty"
           DTS:ThreadHint="0">
@@ -905,7 +995,7 @@
           <DTS:ObjectData>
             <ScriptProject
               Name="ST_24f57a85dd7a48a48c365025fea63135"
-              VSTAMajorVersion="15"
+              VSTAMajorVersion="3"
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::file_name,User::file_path"
@@ -1044,7 +1134,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ST_24f57a85dd7a48a48c365025fea63135</RootNamespace>
     <AssemblyName>ST_24f57a85dd7a48a48c365025fea63135</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
     <TargetFrameworkProfile></TargetFrameworkProfile>
@@ -1073,8 +1163,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -1109,7 +1199,7 @@
         <ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
         <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex=""></Host>
         <ProjectClient>
-          <HostIdentifier>SSIS_ST140</HostIdentifier>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -1280,21 +1370,21 @@ namespace ST_24f57a85dd7a48a48c365025fea63135
                 Name="Project"
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>ST_24f57a85dd7a48a48c365025fea63135</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>ST_24f57a85dd7a48a48c365025fea63135</msb:DisplayName>
-    <msb:ProjectId>{AF0CC2A7-72D0-48F9-98D2-3E349EA9B511}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="ST_24f57a85dd7a48a48c365025fea63135.csproj" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-    <msb:File Include="ScriptMain.cs" />
-  </msb:ItemGroup>
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_24f57a85dd7a48a48c365025fea63135</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_24f57a85dd7a48a48c365025fea63135</msb:DisplayName>
+		<msb:ProjectId>{CA0E450B-8EAE-4001-BA37-42A86D930C25}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_24f57a85dd7a48a48c365025fea63135.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
@@ -1406,21 +1496,21 @@ namespace ST_24f57a85dd7a48a48c365025fea63135.Properties {
               <BinaryItem
                 Name="ST_24f57a85dd7a48a48c365025fea63135.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDANm0gFsAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAAyi4A
-AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHguAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDACnjhlsAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAAxi4A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHQuAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA0A4AAAAgAAAAEAAAAAIA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAzA4AAAAgAAAAEAAAAAIA
 AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACs
-LgAAAAAAAEgAAAACAAUAaCEAAFgMAAABAAAAAAAAAMAtAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACo
+LgAAAAAAAEgAAAACAAUAaCEAAFQMAAABAAAAAAAAALwtAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwBACjAAAAAAAAAAIoEAAACm8RAAAKcgEAAHBvEgAACm8T
 AAAKbxQAAApyIQAAcAIoEAAACm8RAAAKciUAAHBvEgAACm8TAAAKbxQAAAooFQAACnMWAAAKbxcA
 AAosIgIoEAAACm8RAAAKckUAAHBvEgAACheMHgAAAW8YAAAKKyACKBAAAApvEQAACnJFAABwbxIA
 AAoWjB4AAAFvGAAACgIoEAAAChZvGQAACioeAigaAAAKKh4CKBsAAAoqrn4BAAAELR5yaQAAcNAD
 AAACKBwAAApvHQAACnMeAAAKgAEAAAR+AQAABCoafgIAAAQqHgKAAgAABCoafgMAAAQqHgIoHwAA
 CioucwgAAAaAAwAABCoAAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADoAwAA
-I34AAFQEAACkBQAAI1N0cmluZ3MAAAAA+AkAANwAAAAjVVMA1AoAABAAAAAjR1VJRAAAAOQKAAB0
+I34AAFQEAACkBQAAI1N0cmluZ3MAAAAA+AkAANwAAAAjVVMA1AoAABAAAAAjR1VJRAAAAOQKAABw
 AQAAI0Jsb2IAAAAAAAAAAgAAAVcdoAEJAwAAAPoBMwAWAAABAAAAIQAAAAUAAAAGAAAACQAAAAEA
 AAAfAAAAAgAAABAAAAACAAAAAwAAAAQAAAABAAAABAAAAAEAAAABAAAAAACJAwEAAAAAAAYALwJ5
 BAYAvgJ5BAYAewFmBA8A7QQAAAYAqAEPBAYAEgIPBAYA8wEPBAYApQIPBAYATwIPBAYAaAIPBAYA
@@ -1436,9 +1526,9 @@ FQC5AFkEBgBxAEoFGwDBACsFIADJALEDJQDRANwCKwCJABADLwDZAGsFMwDhAFkEEADpAGAFOgDR
 AOYCPgDBAIUFAQBxAFkEBgCJAFkEBgD5AJMAQwD5AJQFSwCRAFkEUQCxAFkEBgAIABQAawAIABgA
 cAApAHMA2AAuAAsAsAAuABMAuQAuABsA2AAuACMA4QAuACsACgEuADMACgEuADsACgEuAEMA4QAu
 AEsAEAEuAFMACgEuAFsAJwFDAGMAcABJAHMA2ABhAHsAcABjAGsAcAADAAEABAADAAAASQShAAAA
-8gCmAAAAfQWrAAIABAADAAIABQAFAAEABgAFAAIABwAHAASAAAABAAAAmhoMmQAAAAAAAAEAAAAE
-AAAAAAAAAAAAAABZAF8AAAAAAA4AAAAAAAAAAAAAAGIAGQMAAAAABAAAAAAAAAAAAAAAWQC6AwAA
-AAAOAAAAAAAAAAAAAABiADgAAAAAAAAAAAABAAAAqgQAAAUAAgAAAAAAAFNUXzI0ZjU3YTg1ZGQ3
+8gCmAAAAfQWrAAIABAADAAIABQAFAAEABgAFAAIABwAHAASAAAABAAAAnxp0ZAAAAAAAAAEAAAAE
+AAAAAAAAAAAAAABZAF8AAAAAAAsAAAAAAAAAAAAAAGIAGQMAAAAABAAAAAAAAAAAAAAAWQC6AwAA
+AAALAAAAAAAAAAAAAABiADgAAAAAAAAAAAABAAAAqgQAAAUAAgAAAAAAAFNUXzI0ZjU3YTg1ZGQ3
 YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1ADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2Vy
 dmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAVmFyaWFibGUA
 UnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUATWljcm9zb2Z0LlNxbFNlcnZlci5E
@@ -1467,19 +1557,19 @@ c3RzAENvbmNhdABPYmplY3QAZ2V0X0RlZmF1bHQAc2V0X1Rhc2tSZXN1bHQAZ2V0X0Fzc2VtYmx5
 AAAAAAAfVQBzAGUAcgA6ADoAZgBpAGwAZQBfAHAAYQB0AGgAAANcAAAfVQBzAGUAcgA6ADoAZgBp
 AGwAZQBfAG4AYQBtAGUAACNVAHMAZQByADoAOgBQAHIAbwBjAGUAcwBzAEYAaQBsAGUAAHFTAFQA
 XwAyADQAZgA1ADcAYQA4ADUAZABkADcAYQA0ADgAYQA0ADgAYwAzADYANQAwADIANQBmAGUAYQA2
-ADMAMQAzADUALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAABOVfpt
-7SiQRoKzJujdL9leAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFRBCAAEmEEIAASZQUgARJpHAMg
+ADMAMQAzADUALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAMW7Na
+Xw39SZfiDSLlh+uHAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFRBCAAEmEEIAASZQUgARJpHAMg
 ABwDIAAOBgADDg4ODgMgAAIEIAEBHAcAARJ9EYCBBSAAEoCFByACAQ4SgIUIt3pcVhk04IkIiYRd
 zYCAzJEEAAAAAAQBAAAAAwYSSQMGEk0DBhIQAgYIAwYRFAQAABJJBAAAEk0FAAEBEk0EAAASEAMA
 AAEECAASSQQIABJNBAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MB
 CAEAAgAAAAAAKAEAI1NUXzI0ZjU3YTg1ZGQ3YTQ4YTQ4YzM2NTAyNWZlYTYzMTM1AAAFAQAAAAAW
-AQARQ29weXJpZ2h0IEAgIDIwMTgAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNQEAVA4U
-RnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41AAAAtAAAAM7K774BAAAAkQAA
-AGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAu
-MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lz
-dGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAKAu
-AAAAAAAAAAAAALouAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsLgAAAAAAAAAAAAAAAF9Db3JE
-bGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AQARQ29weXJpZ2h0IEAgIDIwMTgAAEcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4U
+RnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNAC0AAAAzsrvvgEAAACRAAAAbFN5
+c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAs
+IEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0u
+UmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAnC4AAAAA
+AAAAAAAAti4AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKguAAAAAAAAAAAAAAAAX0NvckRsbE1h
+aW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1487,14 +1577,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQAMmZoaAAABAAyZmho/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQB0ZJ8aAAABAHRknxo/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAA
 MAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABh
 AG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4A
 AAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1
 AGYAZQBhADYAMwAxADMANQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAA
-LgA2ADgAMQAwAC4AMwA5ADEAOAAwAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
+LgA2ADgAMQA1AC4AMgA1ADcAMQA2AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
 AFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAAMgA1AGYA
 ZQBhADYAMwAxADMANQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0
 AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQA
@@ -1503,15 +1593,15 @@ AGEAbQBlAAAAUwBUAF8AMgA0AGYANQA3AGEAOAA1AGQAZAA3AGEANAA4AGEANAA4AGMAMwA2ADUA
 MAAyADUAZgBlAGEANgAzADEAMwA1AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBt
 AGUAAAAAAFMAVABfADIANABmADUANwBhADgANQBkAGQANwBhADQAOABhADQAOABjADMANgA1ADAA
 MgA1AGYAZQBhADYAMwAxADMANQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAA
-ADEALgAwAC4ANgA4ADEAMAAuADMAOQAxADgAMAAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
-VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADEAMAAuADMAOQAxADgAMAAAAAAAAAAAAAAAAAAA
+ADEALgAwAC4ANgA4ADEANQAuADIANQA3ADEANgAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
+VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4ADEANQAuADIANQA3ADEANgAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAADMPgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAADIPgAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1733,6 +1823,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:ObjectName="Constraint 20"
       DTS:To="Package\ExecuteProcess_archive_Processed_Data" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{519E077A-0AC9-4CEF-8526-CAA055776B36}"
+      DTS:From="Package\Expression_set_varFinal_to_True"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\ExecuteSQL_Log_ETL" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
       DTS:DTSID="{C4FAFA8D-540B-433D-9F32-BF7A4D342EDD}"
@@ -1751,11 +1849,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
-      DTS:DTSID="{9DD587FA-319D-4ACF-9B50-E168F66F799B}"
+      DTS:DTSID="{DF0DA0EA-C55E-4556-BEE9-88A558E37F0D}"
       DTS:From="Package\ExecuteSQL_Enable_Trigers"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
-      DTS:To="Package\ExecuteSQL_Log_ETL" />
+      DTS:To="Package\Expression_set_varFinal_to_True" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
       DTS:CreationName=""
@@ -1795,21 +1893,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql11">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteProcess_archive_BCP_err_file"
           TopLeft="467,1107.2" />
         <NodeLayout
-          Size="289,42"
+          Size="289,43"
           Id="Package\ExecuteProcess_archive_Processed_Data"
-          TopLeft="472,1269.6" />
+          TopLeft="461.333333333333,1269.6" />
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteProcess_Move_wfSubApplication_etc"
@@ -1819,9 +1917,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\ExecuteProcess_Unzip_Source_Data"
           TopLeft="471,169.5" />
         <NodeLayout
-          Size="187,42"
+          Size="289,42"
           Id="Package\ExecuteSQL _log_3"
-          TopLeft="1063,1682" />
+          TopLeft="1137.5,1681" />
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteSQL_Build_zTblPath"
@@ -1839,33 +1937,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\ExecuteSQL_Disable_Trigers"
           TopLeft="780,9" />
         <NodeLayout
-          Size="289,42"
+          Size="289,43"
           Id="Package\ExecuteSQL_Drop_Table_zTblPath"
-          TopLeft="468,1348.8" />
+          TopLeft="461.333333333333,1348.8" />
         <NodeLayout
           Size="289,43"
           Id="Package\ExecuteSQL_Enable_all_constraints"
-          TopLeft="464,1427" />
+          TopLeft="461.333333333333,1427" />
         <NodeLayout
-          Size="289,42"
+          Size="289,43"
           Id="Package\ExecuteSQL_Enable_Trigers"
-          TopLeft="460,1511" />
+          TopLeft="461.333333333333,1511" />
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteSQL_Enable_Trigers_2"
-          TopLeft="812,1509" />
+          TopLeft="815.333333333333,1508" />
         <NodeLayout
-          Size="187,42"
+          Size="289,42"
           Id="Package\ExecuteSQL_log_1"
-          TopLeft="164,1675" />
+          TopLeft="107,1678" />
         <NodeLayout
-          Size="187,42"
+          Size="289,42"
           Id="Package\ExecuteSQL_log_2"
-          TopLeft="821,1683" />
+          TopLeft="815.333333333333,1682" />
         <NodeLayout
-          Size="187,42"
+          Size="289,43"
           Id="Package\ExecuteSQL_Log_ETL"
-          TopLeft="509,1677" />
+          TopLeft="461.333333333333,1682" />
         <NodeLayout
           Size="289,42"
           Id="Package\ExecuteSQL_Read_TableInfo_from_zTblPath"
@@ -1873,7 +1971,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="289,43"
           Id="Package\Expressiiom_set_VarConstraints_False"
-          TopLeft="813,1425" />
+          TopLeft="815.333333333333,1430" />
         <NodeLayout
           Size="289,42"
           Id="Package\Expression_Date_to_vardate"
@@ -1881,11 +1979,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="289,42"
           Id="Package\Expression_set_varTriger_False"
-          TopLeft="111,1513" />
+          TopLeft="107,1513" />
         <NodeLayout
-          Size="230,42"
+          Size="289,42"
           Id="Package\Expression_Set_varTriger_False"
-          TopLeft="1041,1595" />
+          TopLeft="1137.5,1599" />
         <NodeLayout
           Size="518,42"
           Id="Package\ForeachLoop_Staging_table_and_Processing_One_by_One\ExecuteSQL_BCP_load_source_Get_table_and_Source_file_name_path_from_Table_zTblPath"
@@ -2139,18 +2237,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="108.5,340" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="606.5,1470">
+          TopLeft="605.833333333333,1470">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,40.9999999999998"
+              EndConnector="0,41"
               Start="0,0"
-              End="0,33.4999999999998">
+              End="0,33.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.4999999999998" />
+                    End="0,33.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2183,7 +2281,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="912.083333333333,1551">
+          TopLeft="959.416666666667,1550">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -2205,78 +2303,78 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="1003.33333333333,1551">
+          TopLeft="1006.66666666667,1550">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="152.666666666667,44"
+              EndConnector="275.333333333333,49"
               Start="0,0"
-              End="152.666666666667,36.5">
+              End="275.333333333333,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7453544390915" />
+                    End="0,15.7618719889883" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7453544390915"
-                    Point2="0,17.7453544390915"
-                    Point3="4,17.7453544390915" />
+                    Point1="0,15.7618719889883"
+                    Point2="0,19.7618719889883"
+                    Point3="4,19.7618719889883" />
                   <mssgle:LineSegment
-                    End="148.666666666667,17.7453544390915" />
+                    End="271.333333333333,19.7618719889883" />
                   <mssgle:CubicBezierSegment
-                    Point1="148.666666666667,17.7453544390915"
-                    Point2="152.666666666667,17.7453544390915"
-                    Point3="152.666666666667,21.7453544390915" />
+                    Point1="271.333333333333,19.7618719889883"
+                    Point2="275.333333333333,19.7618719889883"
+                    Point3="275.333333333333,23.7618719889883" />
                   <mssgle:LineSegment
-                    End="152.666666666667,36.5" />
+                    End="275.333333333333,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="61.0919856770834,22.7453544390915,30.4826953125,9.7490234375"
+              BoundingBox="122.425319010417,24.7618719889883,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="460,1533">
+          TopLeft="461.333333333333,1533.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="-60,0"
+              EndConnector="-65.3333333333334,0"
               Start="0,0"
-              End="-52.5,0">
+              End="-57.8333333333334,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-52.5,0" />
+                    End="-57.8333333333334,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-41.49134765625,5,30.4826953125,9.7490234375"
+              BoundingBox="-44.1580143229167,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="256.5,1555">
+          TopLeft="251.5,1555">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,120"
+              EndConnector="0,123"
               Start="0,0"
-              End="0,112.5">
+              End="0,115.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,112.5" />
+                    End="0,115.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2287,18 +2385,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="1156.25,1637">
+          TopLeft="1282,1641">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,45"
+              EndConnector="0,40"
               Start="0,0"
-              End="0,37.5">
+              End="0,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2331,18 +2429,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 16]"
-          TopLeft="610.5,1390.8">
+          TopLeft="605.833333333333,1391.8">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,36.2"
+              EndConnector="0,35.2"
               Start="0,0"
-              End="0,28.7">
+              End="0,27.7">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.7" />
+                    End="0,27.7" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2397,18 +2495,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="614.5,1311.6">
+          TopLeft="605.833333333333,1312.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,37.2"
+              EndConnector="0,36.2"
               Start="0,0"
-              End="0,29.7">
+              End="0,28.7">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.7" />
+                    End="0,28.7" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2441,18 +2539,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 20]"
-          TopLeft="614,1230.4">
+          TopLeft="608.666666666667,1230.4">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,39.2"
+              EndConnector="0,39.1999999999998"
               Start="0,0"
-              End="0,31.7">
+              End="0,31.6999999999998">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.7" />
+                    End="0,31.6999999999998" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2509,28 +2607,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point3="-238.75,31.744" />
                   <mssgle:LineSegment
                     End="-238.75,34.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="603.5,1553">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,124"
-              Start="0,0"
-              End="0,116.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,116.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2597,42 +2673,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="753,1447.5">
+          TopLeft="750.333333333333,1450">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="60,0"
+              EndConnector="65,0"
               Start="0,0"
-              End="52.5,0">
+              End="57.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="52.5,0" />
+                    End="57.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="11.00865234375,5,30.4826953125,9.7490234375"
+              BoundingBox="13.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="957,1468">
+          TopLeft="959.833333333333,1473">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,41"
+              EndConnector="0,35"
               Start="0,0"
-              End="0,33.5">
+              End="0,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2655,6 +2731,54 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssge:FontInfo>
           </AnnotationLayout.FontInfo>
         </AnnotationLayout>
+        <NodeLayout
+          Size="289,43"
+          Id="Package\Expression_set_varFinal_to_True"
+          TopLeft="461.333333333333,1591" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="605.833333333333,1554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="605.833333333333,1634">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

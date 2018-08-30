@@ -7,9 +7,12 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ComputerTalkDB", "ComputerT
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DataReplication|Default = DataReplication|Default
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F862A799-6E7B-4A31-8AF8-32E31D641222}.DataReplication|Default.ActiveCfg = DataReplication
+		{F862A799-6E7B-4A31-8AF8-32E31D641222}.DataReplication|Default.Build.0 = DataReplication
 		{F862A799-6E7B-4A31-8AF8-32E31D641222}.Development|Default.ActiveCfg = Development
 		{F862A799-6E7B-4A31-8AF8-32E31D641222}.Development|Default.Build.0 = Development
 	EndGlobalSection
