@@ -13,7 +13,7 @@
   <DeploymentModelSpecificContent>
     <Manifest>
       <DTSPackages>
-        <DtsPackage FormatVersion="0">
+        <DtsPackage FormatVersion="6">
           <Name>CTReplication.dtsx</Name>
           <FullPath>CTReplication.dtsx</FullPath>
           <References />
@@ -83,13 +83,7 @@
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
         <TargetServerVersion>SQLServer2012</TargetServerVersion>
-        <ParameterConfigurationValues>
-          <ConfigurationSetting>
-            <Id>LastModifiedTime</Id>
-            <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2018-08-06T01:19:57.9710994Z</Value>
-          </ConfigurationSetting>
-        </ParameterConfigurationValues>
+        <ParameterConfigurationValues />
       </Options>
     </Configuration>
     <Configuration>
@@ -101,13 +95,7 @@
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
         <TargetServerVersion>SQLServer2012</TargetServerVersion>
-        <ParameterConfigurationValues>
-          <ConfigurationSetting>
-            <Id>LastModifiedTime</Id>
-            <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2018-08-06T01:19:57.9710994Z</Value>
-          </ConfigurationSetting>
-        </ParameterConfigurationValues>
+        <ParameterConfigurationValues />
       </Options>
     </Configuration>
   </Configurations>
