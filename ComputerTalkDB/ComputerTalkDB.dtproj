@@ -13,7 +13,7 @@
   <DeploymentModelSpecificContent>
     <Manifest>
       <DTSPackages>
-        <DtsPackage FormatVersion="6">
+        <DtsPackage FormatVersion="-1">
           <Name>CTReplication.dtsx</Name>
           <FullPath>CTReplication.dtsx</FullPath>
           <References />
